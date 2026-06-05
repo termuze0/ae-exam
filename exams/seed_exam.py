@@ -84,7 +84,13 @@ chemistry_questions = [
     ("The molecule COCl2 (phosgene) has a trigonal planar geometry. What is the Cl-C-Cl bond angle relative to 120 degrees?", [("Equal to 120 degrees", False), ("Greater than 120 degrees", False), ("Slightly less than 120 degrees", True), ("90 degrees", False)]),
     ("What is the cause of unusual high boiling points of HF, H2O and NH3?", [("Dipole-Dipole forces", False), ("Induced dipole forces", False), ("Hydrogen bonding", True), ("Ion-dipole forces", False)]),
     ("Which one of the following CORRECTLY illustrates the hybridization of orbitals of Be in the molecule BeCl2?", [("sp3 hybridization with 4 hybrid orbitals", False), ("sp3 hybridization with lone pairs", False), ("sp hybridization: one 2s and one 2p combine to form two sp orbitals", True), ("sp2 hybridization with three hybrid orbitals", False)]),
-    ("What is the electron configuration of O2- molecule as per the molecular orbital model? (Atomic number of O = 8)", [("sigma1s^2 sigma*1s^2 sigma2s^2 sigma*2s^2 sigma2px^2 (pi2py^2 = pi2pz^2) (pi*2py^1 = pi*2pz^0)", False), ("sigma1s^2 sigma*1s^2 sigma2s^2 sigma*2s^2 sigma2px^2 (pi2py^2 = pi2pz^2) (pi*2py^2 = pi*2pz^1)", False), ("sigma1s^2 sigma*1s^2 sigma2s^2 sigma*2s^2 sigma2px^2 (pi2py^2 = pi2pz^2) (pi*2py^1 = pi*2pz^1)", False), ("sigma1s^2 sigma*1s^2 sigma2s^2 sigma*2s^2 sigma2px^2 (pi2py^2 = pi2pz^2) (pi*2py^2 = pi*2pz^1)", True)]),
+    # FIXED: all four answer options are now distinct
+    ("What is the electron configuration of O2- molecule as per the molecular orbital model? (Atomic number of O = 8)", [
+        ("sigma1s2 sigma*1s2 sigma2s2 sigma*2s2 sigma2px2 pi2py2 pi2pz2 pi*2py1 pi*2pz0", False),
+        ("sigma1s2 sigma*1s2 sigma2s2 sigma*2s2 sigma2px2 pi2py2 pi2pz2 pi*2py2 pi*2pz1", True),
+        ("sigma1s2 sigma*1s2 sigma2s2 sigma*2s2 sigma2px2 pi2py2 pi2pz2 pi*2py1 pi*2pz1", False),
+        ("sigma1s2 sigma*1s2 sigma2s2 sigma*2s2 sigma2px2 pi2py1 pi2pz2 pi*2py2 pi*2pz1", False),
+    ]),
     ("Which of the following factors does NOT affect the rate of a chemical reaction having solid reactants?", [("Concentration of reactants", False), ("Temperature of reaction", False), ("Physical state of reactants", False), ("Volume of reaction vessel", True)]),
     ("At a particular temperature, the equilibrium constant Kc = 0.36 for the reaction SO3(g) = SO2(g) + O2(g). In an experiment, 1.00 mol of SO3 is introduced into a 1.00 L container. It was found that there is 0.50 mol of SO2 at equilibrium in the same volume. Which of the following predictions can be drawn from the given data?", [("The reaction is at equilibrium", False), ("The reaction will proceed to the left", False), ("The reaction will proceed to the right", True), ("It is not possible to predict the direction of the reaction", False)]),
     ("What is the density of methane (CH4) at a pressure of 900 torr and a temperature of 25 degrees C? (R = 0.082 atm L/mol K, 1 atm = 760 torr)", [("0.78 g/L", False), ("0.92 g/L", False), ("1.25 g/L", True), ("9.2 g/L", False)]),
@@ -120,11 +126,6 @@ chemistry_questions = [
     ("Which of the following is the overall reaction for electrolysis of molten NaCl?", [("Na(l) + 1/2 Cl2(g) -> Na+(l) + Cl-(l)", False), ("Na+(l) + Cl-(l) -> Na(l) + 1/2 Cl2(g)", True), ("H2(g) + 1/2 O2(g) -> H2O(g)", False), ("H2O(g) -> H2(g) + 1/2 O2(g)", False)]),
     ("Which of the following occur during the electrolysis of dilute H2SO4?", [("SO4 2- is discharged at the anode", False), ("The overall reaction is: H2(g) + 1/2 O2(g) -> H2O(g)", False), ("H+ is discharged at the negative electrode", True), ("A basic solution is formed", False)]),
 ]
-
-print(f"Total questions: {len(chemistry_questions)}")
-for i, (q, opts) in enumerate(chemistry_questions, 1):
-    correct = [o for o, c in opts if c]
-    print(f"Q{i}: {q[:60]}... -> {correct[0]}")
 
 for q_text, answers in chemistry_questions:
     q = Question.objects.create(exam=chemistry, text=q_text)
