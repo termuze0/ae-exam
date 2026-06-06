@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from .models import Exam, Question, Answer
+from djoser.serializers import UserCreateSerializer
+from .models import CustomUser
 
+class CustomUserCreateSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        model = CustomUser
+        fields = ('id', 'username', 'password')
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:

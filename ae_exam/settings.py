@@ -140,12 +140,14 @@ REST_FRAMEWORK = {
     ),
 }
 
+AUTH_USER_MODEL = 'exams.CustomUser'
 
 DJOSER = {
-    'USER_CREATE_PASSWORD_RETYPE': True,
-    'SET_PASSWORD_RETYPE': True,
-    'SEND_ACTIVATION_EMAIL': False,
-}
+    'LOGIN_FIELD': 'username',
+    'USER_ID_FIELD': 'username',
+    'SERIALIZERS': {
+        'user_create': 'exams.serializers.CustomUserCreateSerializer',
+    },}
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'

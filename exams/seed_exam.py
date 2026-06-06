@@ -1,26 +1,136 @@
 from exams.models import Exam, Question, Answer
 
 # =========================
-# Physics
+# Aptitude
 # =========================
 
-physics = Exam.objects.create(
-    title="Grade 12 Ethiopian University Entrance Physics",
-    description="Physics practice exam",
+aptitude = Exam.objects.create(
+    title="Grade 12 Ethiopian University Entrance Aptitude",
+    description="Aptitude practice exam",
     duration_minutes=30
 )
 
+aptitude_questions = [
+    ("If two days after tomorrow is four days before Saturday, what day is it today?", [("Friday", False), ("Saturday", False), ("Sunday", False), ("Monday", True)]),
+    ("Gad is older than Dan and Dan is older than Betti. With Senni being older than Dan and younger than Gad, who is the youngest?", [("Betti", True), ("Senni", False), ("Gad", False), ("Dan", False)]),
+    ("Aki is Bali's sister. Yaya is Bali's mother. Lema is Yaya's father. Gette is Lema's mother. Then how is Aki related to Lema?", [("daughter", False), ("granddaughter", True), ("grandson", False), ("grandmother", False)]),
+    ("Statement I: All football players are sportspersons. Statement II: All sportspersons are fit. The conclusion 'Some football players are fit' is:", [("incorrect", False), ("reasonably correct", True), ("appropriate", False), ("logically false", False)]),
+    ("How many months have a twenty-eighth day?", [("seven months", False), ("twelve months", True), ("one month", False), ("two months", False)]),
+    ("Which of the following can be rearranged into a 5-letter English word?", [("PYRIO", False), ("DWAEP", True), ("GOFAT", False), ("PASEH", False)]),
+    ("What is described as an absurd assumption about reading according to the passage? (Passage: What is the matter with our reading is casualness...)", [("Reading does not require physical effort.", False), ("All books are equally valuable.", False), ("Ideas can be instantly absorbed and organized.", True), ("Superior minds are easy to understand.", False)]),
+    ("Which of the ideas is used as evidence for the absurd assumption about reading?", [("Line 3-4 [If we are not ... is not in us.]", False), ("Line 7-9 [For we ... greater than our own.]", True), ("Line 4 [tired after reading... disposal of the book.]", False), ("Line 1 [What is the ... preoccupation.]", False)]),
+    ("Why does the author emphasize the act of reflection?", [("To complete the reading process.", True), ("To simplify the ideas encountered.", False), ("To improve intellectual superiority.", False), ("To make reading more enjoyable.", False)]),
+    ("Which of the ideas is used as evidence that reflection completes the reading process?", [("Line 10 [The assumption... absurdity.]", False), ("Line 12 [Reading without... ridiculous.]", True), ("Line 4 [tired after reading... not in us.]", False), ("Line 1 [What is the... preoccupation.]", False)]),
+    ("Identify the grammatically correct sentence:", [("One of all-time greatest payer have recently retired from football.", False), ("One of all-time greatest payers have recently retired from football.", False), ("One of all-time greatest payer has recently retired from football.", True), ("One of all-time greatest payers have recently retired from football.", False)]),
+    ("Identify the grammatically correct sentence:", [("If you'll not feel well, you'd better go to clinic.", False), ("If you're not feeling well, you'd better go to clinic.", True), ("If you'll not feel well, you better go to clinic.", False), ("If you're not feeling well, you would better go to clinic.", False)]),
+    ("Identify the grammatically correct sentence:", [("There school takes only twenty minutes on foot.", False), ("Theirs school takes only twenty minutes on foot.", False), ("Their school takes only twenty minutes on foot.", True), ("They're school takes only twenty minutes on foot.", False)]),
+    ("Identify the grammatically correct sentence:", [("I wanted to first take shower and then eat snack.", True), ("I wanted first take shower and then eat snack.", False), ("I wanted to first take shower and then ate snack.", False), ("I wanted to first take shower and then eating snack.", False)]),
+    ("Choose the word that does NOT fit the group: Monogamy, Polygamy, Polyglot, Polyandry", [("Monogamy", False), ("Polygamy", False), ("Polyglot", True), ("Polyandry", False)]),
+    ("Choose the word that does NOT fit the group: Election, Ballot-box, Signal-box, Voting", [("Election", False), ("Ballot-box", False), ("Signal-box", True), ("Voting", False)]),
+    ("Choose the word that does NOT fit the group: Tiptoeing, Flying, Strolling, Striding", [("Tiptoeing", False), ("Flying", True), ("Strolling", False), ("Striding", False)]),
+    ("Choose the word that does NOT fit the group: Yacht, Ship, Vehicle, Boat", [("Yacht", False), ("Ship", False), ("Vehicle", True), ("Boat", False)]),
+    ("AUTOMOBILE: GARAGE :: Hangar : ________", [("Deck", False), ("Truck", False), ("Train", False), ("Airplane", True)]),
+    ("KEY: LOCK :: Computer : ________", [("Server", False), ("Screen", False), ("Monitor", False), ("Password", True)]),
+    ("NEST: BIRD :: Lion : ________", [("Backyard", False), ("Den", True), ("Hive", False), ("Cave", False)]),
+    ("PHYSICIAN: HOSPITAL :: School : ________", [("Administrator", False), ("Student", False), ("Supervisor", False), ("Teacher", True)]),
+    ("Choose the closest synonym for: PHONEY", [("Fake", True), ("Funny", False), ("Genuine", False), ("Authentic", False)]),
+    ("Choose the closest synonym for: HUMOROUS", [("Satiating", False), ("Satisfying", False), ("Amusing", True), ("Doubting", False)]),
+    ("Choose the closest synonym for: THEFT", [("Burglary", True), ("Hypocrisy", False), ("Gossip", False), ("Suspicion", False)]),
+    ("Choose the word most nearly opposite in meaning to: FONDLY", [("Affectionate", False), ("Sociable", False), ("Hatred", True), ("Agreeable", False)]),
+    ("Choose the word most nearly opposite in meaning to: INVINCIBLE", [("Breakable", False), ("Debatable", False), ("Visible", False), ("Conquerable", True)]),
+    ("Choose the word most nearly opposite in meaning to: SUBORDINATE", [("Superior", True), ("Retainer", False), ("Soldier", False), ("Inferior", False)]),
+    ("In Paragraph 2, the phrase 'these two individuals' refers to: (Passage: If you want transition from being an employee to an employer...)", [("John Smith & the person in movie industry.", True), ("the grocery store and the movie theatre.", False), ("the employer and the employee.", False), ("people and the community as a whole.", False)]),
+    ("What does 'most successful employers today have risen through the ranks, relying on their ability to manage and direct others effectively' imply?", [("Every successful employer is the result of his/her hard work and diligence.", False), ("Having different ranks and rewards is the real manifestation of successful employers.", False), ("All successful employers today have reached their level passing through lots of ups and downs.", False), ("Most successful employers have proven their leadership ability through their journey.", True)]),
+    ("The main intent of the writer in the text is to imply that:", [("the transition from employee to employer does not require much effort except having the interest.", False), ("smooth transition from being an employer to employee is more of a matter of destiny than hard work.", False), ("most successful employers are those who have achieved their dreams through trade-off.", False), ("there are steps that one needs to undergo in the transition from employee to employer.", True)]),
+    ("According to the passage, what does the word 'vices' most likely denote?", [("deputies", False), ("strengths", False), ("weaknesses", True), ("ambitions", False)]),
+    ("Choose the word which can replace the bold term: The man was killed in a car accident. His **body** was dragged from the burning wreckage.", [("remains", True), ("fire", False), ("backseats", False), ("wheels", False)]),
+    ("Choose the word which can replace the bold term: Harvard is one of the most **prestigious** universities in the USA.", [("privileged", False), ("admired", True), ("furnished", False), ("expensive", False)]),
+    ("Choose the word which can replace the bold term: The government has just **repealed** the law segregating public facilities.", [("approved", False), ("renewed", False), ("signed", False), ("cancelled", True)]),
+    ("How many triangles are there in the diagram?", [("18", True), ("14", False), ("16", False), ("12", False)]),
+    ("Which one of the following statements is true about number systems?", [("Every integer number can be numerator of a rational number.", True), ("Every non-negative integer is a natural number.", False), ("The intersection of the set of integers and the set of irrational numbers is non-empty set.", False), ("The sum of two irrational numbers is irrational number.", False)]),
+    ("If f(x) = sin(πx) + e^(x²) + |x| + x³ and g(x) = cos(πx) + ln(x+1) + x, what is f(1) - 2g(0)?", [("e", True), ("ln 2", False), ("0", False), ("e + 2", False)]),
+    ("A student makes a glass of juice using half avocado, one third of the remaining half with mangoes, and the rest equally with banana and papaya. What is the ratio of bananas to avocadoes?", [("1:6", False), ("1:2", False), ("1:3", True), ("2:3", False)]),
+    ("Which one of the following is the largest number?", [("6th root of 5", True), ("36th root of 2", False), ("12th root of 11", False), ("64th root of 3", False)]),
+    ("Pipe A fills a tank in 3 hours, Pipe B in 6 hours. How long to fill the tank if both are opened at the same time?", [("5", False), ("4", False), ("9", False), ("2", True)]),
+    ("Old machine fills 35 bottles/hr, new machine fills 50 bottles/hr, total 590 bottles/day. Old machine breaks after 4 hours. How many hours does the new machine need to fill the rest?", [("8", False), ("5", False), ("13", False), ("9", True)]),
+    ("A spherical soccer ball has a volume of 36π cm³. What is the surface area of the ball?", [("(16π)/3", False), ("12π", False), ("36π", True), ("(32π)/3", False)]),
+    ("The height of a ball is h(t) = kt - t² + 30. What is k if the maximum height is 34?", [("sqrt(2)", False), ("4", True), ("5", False), ("2", False)]),
+    ("A farmer has 10 cows. He didn't receive 92 liters of milk one day (4 cows gave half, 3 gave three-quarters, 3 gave none). How many liters did he receive that day?", [("92", False), ("16", False), ("160", False), ("68", True)]),
+    ("Using the study pattern data (32 days total), how many days did the student study more than the average?", [("18", False), ("8", False), ("17", False), ("15", True)]),
+    ("Using the study pattern data, how many days did the student study less than 8 hours?", [("5", False), ("2", False), ("24", True), ("12", False)]),
+    ("Using the study pattern data, what is the median amount of study in hours?", [("6", False), ("8", False), ("24", False), ("4", True)]),
+    ("If -x + 2y = 4, what is the value of (25^y) / (5^x)?", [("125", False), ("625", True), ("5", False), ("25", False)]),
+    ("A woman burns 416 calories/hour: 10 cal/min swimming, 6 cal/min biking. How many minutes does she swim?", [("56", False), ("14", True), ("60", False), ("46", False)]),
+    ("Which one of the following is the domain of g(x) = ln(1-x) + ln(x)?", [("(0,∞)", False), ("R \\ {(-1,0)}", False), ("(0,1)", True), ("(1,∞)", False)]),
+    ("How many days are there from the first day of March to the last day of May?", [("89", False), ("92", True), ("91", False), ("90", False)]),
+    ("Quantity P: Average monthly payment. Quantity Q: Median monthly payment. A corporation pays 10 employees Birr 100,000/month; 6 earn less than Birr 10,000. Compare P and Q.", [("Quantity P is greater than Quantity Q.", True), ("Quantity P is less than Quantity Q.", False), ("The two quantities cannot be compared.", False), ("The two quantities are equal.", False)]),
+    ("Triangle sides x, y, z. Compare Quantity P: 3x + y - z and Quantity Q: 4x.", [("Quantity P is less than Quantity Q.", True), ("Quantity P is greater than Quantity Q.", False), ("The two quantities cannot be compared.", False), ("The two quantities are equal.", False)]),
+    ("Which one of the following is true about the function f(x) = x^(2/5)?", [("The domain of f is {x ∈ R | x ≥ 0}", False), ("The range of f is {y ∈ R | y ≥ 0}", True), ("The range of f is {y | y ∈ R}", False), ("The domain of f is {x ∈ R | x ≤ 0}", False)]),
+    ("What is the value of z in the sequence 1, 2, 4, 8, 10, 20, 22, z,...?", [("44", True), ("24", False), ("32", False), ("40", False)]),
+    ("A 6x6 square floor (36 m²) has 1m² ceramics. Black ceramics placed along both diagonals, white for the rest. What is the ratio of black to white ceramics?", [("1:6", False), ("1:2", False), ("1:5", True), ("4:5", False)]),
+    ("A T-shirt factory profit: p(x) = -x² + 1400x - 80000. What range of prices yields profit ≥ Birr 400,000?", [("600 ≤ x ≤ 800", True), ("x ≤ 800", False), ("x ≤ 600 or x ≥ 800", False), ("x ≤ 600", False)]),
+]
+
+for q_text, answers in aptitude_questions:
+    q = Question.objects.create(exam=aptitude, text=q_text)
+    for text, correct in answers:
+        Answer.objects.create(question=q, text=text, is_correct=correct)
+
+# =========================
+# Physics 2017
+# =========================
+
+physics = Exam.objects.create(
+    title="2017 Ethiopian University Entrance Physics",
+    description="Physics practice exam",
+    duration_minutes=150
+)
+
 physics_questions = [
-    ("What is the SI unit of force?", [("Newton", True), ("Joule", False), ("Watt", False), ("Pascal", False)]),
-    ("Which law states F = ma?", [("Newton's Second Law", True), ("Newton's First Law", False), ("Ohm's Law", False), ("Hooke's Law", False)]),
-    ("What is the speed of light in vacuum?", [("3×10^8 m/s", True), ("3×10^6 m/s", False), ("3×10^5 km/s", False), ("300 m/s", False)]),
-    ("Which quantity is measured in Joules?", [("Energy", True), ("Force", False), ("Power", False), ("Pressure", False)]),
-    ("What is acceleration due to gravity on Earth?", [("9.8 m/s²", True), ("8.9 m/s²", False), ("10.8 m/s²", False), ("12 m/s²", False)]),
-    ("Which device measures electric current?", [("Ammeter", True), ("Voltmeter", False), ("Barometer", False), ("Thermometer", False)]),
-    ("The unit of power is?", [("Watt", True), ("Newton", False), ("Joule", False), ("Volt", False)]),
-    ("What type of lens is used in a magnifying glass?", [("Convex", True), ("Concave", False), ("Plane", False), ("Cylindrical", False)]),
-    ("Which wave can travel in vacuum?", [("Light", True), ("Sound", False), ("Water", False), ("Seismic", False)]),
-    ("What is the formula for density?", [("Mass/Volume", True), ("Force/Area", False), ("Distance/Time", False), ("Mass×Volume", False)]),
+    ("Vector quantities are represented by", [("magnitude and direction", True), ("direction only", False), ("magnitude only", False), ("dimensionless values", False)]),
+    ("According to Newton's first law, an object that is in motion continues its state of motion with", [("a decreasing speed if the resultant force exerted on it is zero.", False), ("constant velocity if the resultant force exerted on it is not zero.", False), ("an increasing speed if the resultant force exerted on it is not zero.", False), ("constant velocity if the resultant force exerted on it is zero.", True)]),
+    ("Which of the following correctly describes the difference between distance and displacement?", [("Distance can be described both in magnitude and direction, while displacement is described only by magnitude.", False), ("Distance depends on the initial and final points, while displacement depends on the path followed by a moving body.", False), ("Distance is always greater than or equal to the magnitude of displacement, while the magnitude of the displacement is always less than or equal to distance.", True), ("Distance has either positive or negative values, while displacement has only positive value.", False)]),
+    ("Which of the following statements is correct about a uniformly accelerated motion?", [("The velocity is constant.", False), ("The acceleration is constant.", True), ("The speed is constant but the direction is changing.", False), ("The displacement increases at a uniform rate.", False)]),
+    ("Two displacement vectors have magnitudes 4 m and 3 m. Which one of the following is NOT the possible value of the magnitude of their resultant vector?", [("1 m", False), ("7 m", False), ("5 m", False), ("12 m", True)]),
+    ("A train is moving along a straight line with a constant acceleration of 5 m/s² when it passes by a traffic light point. From there on, if the time taken by the train to reach a velocity of 30 m/s is 4 seconds, then what is the distance of the train from the traffic point after 8 seconds?", [("80 m", False), ("160 m", False), ("240 m", True), ("320 m", False)]),
+    ("Which one of the following statements is a necessary condition for an object to be in linear equilibrium?", [("The net force acting on the object is non-zero constant.", False), ("The linear acceleration of the object is zero.", True), ("The linear speed of the object is constant.", False), ("The linear acceleration of the object is non-zero constant.", False)]),
+    ("When an object tends to slide over the surface of another object, tiny bumps at the surface of the two objects knocking and locking together. This causes", [("gravitational force.", False), ("electrostatic force.", False), ("normal force.", False), ("frictional force.", True)]),
+    ("Suppose a ball is thrown vertically upward and after reaching a maximum height, it returns back to its initial position. Which of the following statement is correct about energy changes and work done on the ball?", [("On its way up, work done by gravity is positive.", False), ("On its way up, change in its kinetic energy is positive.", False), ("On its way down, work done by gravity is positive.", True), ("On its way down, change in its potential energy is positive.", False)]),
+    ("The mechanical energy of an oscillating object at any point through its path is equal to", [("the sum of its kinetic and potential energies.", True), ("the sum of its kinetic and internal energies.", False), ("the sum of its potential and internal energies.", False), ("the difference between its kinetic and potential energies.", False)]),
+    ("A 2 kg object accelerates with 1.5 m/s² to the right on a horizontal frictionless surface under the action of two horizontal forces, F1 and F2 (F2 = 1 N to the left). What should be the magnitude of F1?", [("2 N", False), ("1 N", False), ("3 N", False), ("4 N", True)]),
+    ("A tennis ball of mass 0.10 kg traveling horizontally at 40.0 m/s is struck back by a racket. If the ball returns back with a speed of 30.0 m/s in the opposite direction, what is the magnitude of the impulse delivered to the ball by the racket?", [("3.0 kg m/s", False), ("4.0 kg m/s", False), ("7.0 kg m/s", True), ("1.0 kg m/s", False)]),
+    ("A force that is exerted on a simple machine in order to produce input work is called", [("friction.", False), ("load.", False), ("effort.", True), ("normal.", False)]),
+    ("Which one of the following statements is correct about transverse and longitudinal waves?", [("The directions of wave motion and vibration of the particles are parallel for transverse waves and perpendicular for longitudinal waves.", False), ("Waves on a string are longitudinal whereas sound waves are transverse.", False), ("The directions of wave motion and vibration of particles are parallel for longitudinal waves but perpendicular for transverse waves.", True), ("A longitudinal wave comprises a series of crests and troughs, whereas a transverse wave comprises a series of compressions and rarefactions.", False)]),
+    ("An object that is partially or fully submerged in a fluid experiences an upward force from the fluid. The apparent weight of the object is the weight of the", [("fluid it displaces.", False), ("object in air minus the buoyant force.", True), ("object in air.", False), ("fluid it displaces minus the buoyant force.", False)]),
+    ("A force is used to push a box of mass m along the slope of an inclined plane with constant velocity. If the coefficient of friction between the box and the inclined plane be µ, the actual mechanical advantage (AMA) of the inclined plane is", [("1 / (cosθ + µ sinθ)", False), ("1 / (sinθ + µ cosθ)", True), ("cosθ + µ sinθ", False), ("sinθ + µ cosθ", False)]),
+    ("A wheel and axle of radii 40 cm and 8 cm, respectively, is used to lift a bucket of 6 kg of water from a well by applying an effort of 20 N on the wheel. The percentage efficiency of this simple machine is", [("60%", True), ("66.7%", False), ("30%", False), ("80%", False)]),
+    ("Block A of mass 8.0 kg travelling at 6 m/s collides with block B of mass 12 kg moving in the same direction at 3 m/s. If the velocity of block A after collision is 4 m/s in the positive x-axis, what is the velocity of block B after the collision?", [("4.33 m/s to the negative x-axis", False), ("3.71 m/s to the negative x-axis", False), ("3.71 m/s to the positive x-axis", False), ("4.33 m/s to the positive x-axis", True)]),
+    ("The amount of heat energy required to raise the temperature of a given substance by 1°C is", [("latent heat.", False), ("heat capacity.", True), ("quantity of heat.", False), ("specific heat capacity.", False)]),
+    ("Which one of the following statements is correct about the properties of waves?", [("When a wave is reflected, its speed and wavelength are changed.", False), ("When a wave is refracted, its speed and wavelength remain the same.", False), ("When two waves interfere destructively, the amplitude of the resultant wave is greater than the amplitude of each wave.", False), ("Diffraction of a wave through a narrow gap is more observable than through a wider gap.", True)]),
+    ("A square metal plate of coefficient of linear expansion α has a surface area A0 at temperature T0. If the temperature is raised by ΔT, the new surface area A is expressed as", [("A = A0(1 + α ΔT)", False), ("A = A0(1 + 3α ΔT)", False), ("A = A0(1 + 2α ΔT)", True), ("A = 2A0(1 + α ΔT)", False)]),
+    ("The atmospheric pressure in a certain area is determined to be 103.36 kPa using a mercury barometer. The height to which the mercury column rises is about", [("7.6 m", False), ("760 cm", False), ("76 mm", False), ("76 cm", True)]),
+    ("An object dropped into a sea sinks to a depth of 100 m. Which of the following is correct about the pressure the object experiences?", [("The absolute pressure exerted on it is P_absolute = 1.13 × 10⁶ Pa.", True), ("The gauge pressure exerted on it is P_gauge = 1.03 × 10⁷ Pa.", False), ("The gauge pressure exerted on it is P_gauge = 1.01 × 10⁵ Pa.", False), ("The absolute pressure exerted on it is P_absolute = 9.30 × 10⁵ Pa.", False)]),
+    ("How much heat energy is required to change 5 kg of ice at -20°C to water at 10°C?", [("2.10 × 10⁶ J", True), ("1.89 × 10⁶ J", False), ("4.20 × 10⁵ J", False), ("1.68 × 10⁶ J", False)]),
+    ("An electric field is defined as a region where", [("a neutral particle experiences electric force when it is placed in that region.", False), ("a charged particle experiences an electric force if it is placed in that region.", True), ("a charged particle loses its charge when it is placed in that region.", False), ("a charged particle experiences no electric force when it is placed in that region.", False)]),
+    ("Which one of the following statements is correct about the speed of sound in different media?", [("increases as the temperature and density of a material increases.", True), ("in liquid is less than its speed in gas.", False), ("in a colder and less dense medium is faster than in hotter and denser material.", False), ("in solid is less than its speed in liquid.", False)]),
+    ("Four resistors are connected to a voltage source. Which one of the following is correct about the circuit?", [("R1 is connected in series with the effective combination of R3 and R4.", False), ("R2 is connected in parallel with the effective combination of R3 and R4.", True), ("R2 is connected in parallel with R3.", False), ("R1 is connected in parallel with R2.", False)]),
+    ("What is the magnitude of electric field strength at a distance of 2.0 m from a point charge Q = 4.0 C?", [("54.0 × 10⁹ N/C", False), ("18.0 × 10⁹ N/C", False), ("9.0 × 10⁹ N/C", True), ("72.0 × 10⁹ N/C", False)]),
+    ("A wire with resistance 6 Ω is drawn out to be two times as long and half the cross-sectional area. What is the resistance of the new wire?", [("3 Ω", False), ("24 Ω", True), ("12 Ω", False), ("6 Ω", False)]),
+    ("Which statement correctly distinguishes real and virtual images?", [("Real images can be magnified but virtual images cannot.", False), ("Virtual images can be magnified but real images cannot.", False), ("Virtual images can be displayed on a screen unlike the real ones.", False), ("Real images can be displayed on a screen unlike the virtual ones.", True)]),
+    ("Which component provides centripetal force for a mass whirled in a horizontal circle suspended by a string?", [("T sinθ", True), ("T cosθ", False), ("mg", False), ("T", False)]),
+    ("Which of the following fundamental force behaviors is accurately stated?", [("Weak force makes atomic nuclei stable.", False), ("Gravitational force makes planets revolve around the Sun.", True), ("Strong force governs radioactive beta decay.", False), ("Electromagnetism binds nucleons together.", False)]),
+    ("What fields constitute the primary engineering focus in mechanical engineering?", [("Dynamics, Thermodynamics, Force, and Stress", True), ("Nuclear Physics, Acoustics, Optics", False), ("Chemical synthesis, Bio-remediation", False), ("Software systems, Data networking", False)]),
+    ("Which defense technology matching is completely correct?", [("Radar uses jet propulsion fields.", False), ("Drones track sonar pulses exclusively.", False), ("Missiles process nuclear resonance for flight safety.", False), ("Infrared device uses heat emission to identify objects.", True)]),
+    ("Which statement is correct about phase changes?", [("During freezing, heat is absorbed.", False), ("During condensation, heat is absorbed.", False), ("During liquid to gas transition, heat energy is absorbed while temperature remains constant.", True), ("Temperature drops linearly while freezing.", False)]),
+    ("A ball is thrown horizontally from a building of height h with initial speed v0. Which statement is correct?", [("Horizontal velocity changes linearly.", False), ("Its horizontal motion has no acceleration, while vertical motion accelerates due to gravity.", True), ("Vertical speed remains constant.", False), ("Total velocity stays constant during flight.", False)]),
+    ("The flow rate of a fluid is defined as:", [("Mass divided by total volume.", False), ("the volume of the fluid crossing an area per unit time taken.", True), ("Linear velocity multiplied by density.", False), ("Viscosity parameters over cross sections.", False)]),
+    ("Solids are incompressible compared to liquids and gases because:", [("their atoms are relatively fixed distance apart and held together.", True), ("their atoms move completely freely.", False), ("they lack potential energy profiles.", False), ("intermolecular links are non-existent.", False)]),
+    ("Which statement is correct about magnets?", [("Cutting a magnet isolates isolated magnetic monopoles.", False), ("North poles can exist completely on their own.", False), ("If you cut a bar magnet into two, each piece has both north and south poles.", True), ("Heating increases magnetic performance.", False)]),
+    ("The magnetic field created by a long straight current-carrying wire:", [("points radially outward from the wire axes.", False), ("runs purely parallel to the current line.", False), ("alternates linearly backwards and forwards.", False), ("forms circular pattern around the wire.", True)]),
+    ("Doping a pure semiconductor with a group III element results in:", [("N-type semiconductor.", False), ("P-type semiconductor.", True), ("Intrinsic semiconductor.", False), ("Insulating compound.", False)]),
+    ("Plastic is used to cover wires because:", [("It contains a massive density of free electrons.", False), ("It responds sharply to magnetic field tracks.", False), ("It exhibits extremely low resistance metrics.", False), ("Since every electron in plastic is tightly bound to the parent atom, it becomes poor conductor.", True)]),
+    ("Which option correctly states behaviors along semiconductor diode I-V curves?", [("Forward bias drops sharply before cut-in rules.", False), ("Leakage currents dominate forward bias regimes.", False), ("The rapid rise after the cut-in voltage occurs in the forward bias region.", True), ("Breakdown voltage defines safe forward operations.", False)]),
+    ("What happens during the alternating operation phases of a standard half-wave rectifier diode?", [("First half-cycle passes current if forward-biased, second half-cycle blocks when reverse-biased.", True), ("No current flows anywhere in either setup.", False), ("Diodes switch to forward bias exclusively across the negative phases.", False), ("Diodes reverse bias down the starting cycle.", False)]),
 ]
 
 for q_text, answers in physics_questions:
@@ -28,15 +138,9 @@ for q_text, answers in physics_questions:
     for text, correct in answers:
         Answer.objects.create(question=q, text=text, is_correct=correct)
 
-# =========================
-# Chemistry
-# =========================
+print("Aptitude and 2017 Physics entrance exams created successfully.")
 
-chemistry = Exam.objects.create(
-    title="Grade 12 Ethiopian University Entrance Chemistry",
-    description="Chemistry practice exam",
-    duration_minutes=30
-)
+
 
 chemistry_questions = [
     ("Which one of the following CORRECTLY shows the relative charges of an electron, proton and neutron, respectively?", [("0, +1, -1", False), ("0, -1, +1", False), ("-1, +1, 0", False), ("-1, 0, +1", True)]),
@@ -84,13 +188,7 @@ chemistry_questions = [
     ("The molecule COCl2 (phosgene) has a trigonal planar geometry. What is the Cl-C-Cl bond angle relative to 120 degrees?", [("Equal to 120 degrees", False), ("Greater than 120 degrees", False), ("Slightly less than 120 degrees", True), ("90 degrees", False)]),
     ("What is the cause of unusual high boiling points of HF, H2O and NH3?", [("Dipole-Dipole forces", False), ("Induced dipole forces", False), ("Hydrogen bonding", True), ("Ion-dipole forces", False)]),
     ("Which one of the following CORRECTLY illustrates the hybridization of orbitals of Be in the molecule BeCl2?", [("sp3 hybridization with 4 hybrid orbitals", False), ("sp3 hybridization with lone pairs", False), ("sp hybridization: one 2s and one 2p combine to form two sp orbitals", True), ("sp2 hybridization with three hybrid orbitals", False)]),
-    # FIXED: all four answer options are now distinct
-    ("What is the electron configuration of O2- molecule as per the molecular orbital model? (Atomic number of O = 8)", [
-        ("sigma1s2 sigma*1s2 sigma2s2 sigma*2s2 sigma2px2 pi2py2 pi2pz2 pi*2py1 pi*2pz0", False),
-        ("sigma1s2 sigma*1s2 sigma2s2 sigma*2s2 sigma2px2 pi2py2 pi2pz2 pi*2py2 pi*2pz1", True),
-        ("sigma1s2 sigma*1s2 sigma2s2 sigma*2s2 sigma2px2 pi2py2 pi2pz2 pi*2py1 pi*2pz1", False),
-        ("sigma1s2 sigma*1s2 sigma2s2 sigma*2s2 sigma2px2 pi2py1 pi2pz2 pi*2py2 pi*2pz1", False),
-    ]),
+    ("What is the electron configuration of O2- molecule as per the molecular orbital model? (Atomic number of O = 8)", [("sigma1s^2 sigma*1s^2 sigma2s^2 sigma*2s^2 sigma2px^2 (pi2py^2 = pi2pz^2) (pi*2py^1 = pi*2pz^0)", False), ("sigma1s^2 sigma*1s^2 sigma2s^2 sigma*2s^2 sigma2px^2 (pi2py^2 = pi2pz^2) (pi*2py^2 = pi*2pz^1)", False), ("sigma1s^2 sigma*1s^2 sigma2s^2 sigma*2s^2 sigma2px^2 (pi2py^2 = pi2pz^2) (pi*2py^1 = pi*2pz^1)", False), ("sigma1s^2 sigma*1s^2 sigma2s^2 sigma*2s^2 sigma2px^2 (pi2py^2 = pi2pz^2) (pi*2py^2 = pi*2pz^1)", True)]),
     ("Which of the following factors does NOT affect the rate of a chemical reaction having solid reactants?", [("Concentration of reactants", False), ("Temperature of reaction", False), ("Physical state of reactants", False), ("Volume of reaction vessel", True)]),
     ("At a particular temperature, the equilibrium constant Kc = 0.36 for the reaction SO3(g) = SO2(g) + O2(g). In an experiment, 1.00 mol of SO3 is introduced into a 1.00 L container. It was found that there is 0.50 mol of SO2 at equilibrium in the same volume. Which of the following predictions can be drawn from the given data?", [("The reaction is at equilibrium", False), ("The reaction will proceed to the left", False), ("The reaction will proceed to the right", True), ("It is not possible to predict the direction of the reaction", False)]),
     ("What is the density of methane (CH4) at a pressure of 900 torr and a temperature of 25 degrees C? (R = 0.082 atm L/mol K, 1 atm = 760 torr)", [("0.78 g/L", False), ("0.92 g/L", False), ("1.25 g/L", True), ("9.2 g/L", False)]),
@@ -127,37 +225,7 @@ chemistry_questions = [
     ("Which of the following occur during the electrolysis of dilute H2SO4?", [("SO4 2- is discharged at the anode", False), ("The overall reaction is: H2(g) + 1/2 O2(g) -> H2O(g)", False), ("H+ is discharged at the negative electrode", True), ("A basic solution is formed", False)]),
 ]
 
-for q_text, answers in chemistry_questions:
-    q = Question.objects.create(exam=chemistry, text=q_text)
-    for text, correct in answers:
-        Answer.objects.create(question=q, text=text, is_correct=correct)
-
-# =========================
-# Biology
-# =========================
-
-biology = Exam.objects.create(
-    title="Grade 12 Ethiopian University Entrance Biology",
-    description="Biology practice exam",
-    duration_minutes=30
-)
-
-biology_questions = [
-    ("What is the basic unit of life?", [("Cell", True), ("Tissue", False), ("Organ", False), ("Organism", False)]),
-    ("Which organ pumps blood?", [("Heart", True), ("Lung", False), ("Kidney", False), ("Liver", False)]),
-    ("Photosynthesis occurs in?", [("Chloroplast", True), ("Nucleus", False), ("Mitochondria", False), ("Ribosome", False)]),
-    ("Human beings have how many chromosomes?", [("46", True), ("44", False), ("48", False), ("23", False)]),
-    ("Which blood cells fight infection?", [("White Blood Cells", True), ("Red Blood Cells", False), ("Platelets", False), ("Plasma", False)]),
-    ("The largest organ in the human body is?", [("Skin", True), ("Liver", False), ("Heart", False), ("Brain", False)]),
-    ("Which process produces energy in cells?", [("Respiration", True), ("Photosynthesis", False), ("Digestion", False), ("Transpiration", False)]),
-    ("DNA stands for?", [("Deoxyribonucleic Acid", True), ("Dynamic Nucleic Acid", False), ("Double Nitrogen Acid", False), ("None", False)]),
-    ("Which kingdom does mushroom belong to?", [("Fungi", True), ("Plant", False), ("Animal", False), ("Protista", False)]),
-    ("The human respiratory organ is?", [("Lung", True), ("Kidney", False), ("Heart", False), ("Liver", False)]),
-]
-
-for q_text, answers in biology_questions:
-    q = Question.objects.create(exam=biology, text=q_text)
-    for text, correct in answers:
-        Answer.objects.create(question=q, text=text, is_correct=correct)
-
-print("Physics, Chemistry, and Biology entrance exams created successfully.")
+print(f"Total questions: {len(chemistry_questions)}")
+for i, (q, opts) in enumerate(chemistry_questions, 1):
+    correct = [o for o, c in opts if c]
+    print(f"Q{i}: {q[:60]}... -> {correct[0]}")

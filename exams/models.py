@@ -1,6 +1,13 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from .validators import validate_aes_username
 
-
+class CustomUser(AbstractUser):
+    username = models.CharField(
+        max_length=20,
+        unique=True,
+        validators=[validate_aes_username]
+    )
 class Exam(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
