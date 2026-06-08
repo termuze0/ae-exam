@@ -40,14 +40,133 @@ chemistry_questions_2016 = [
     ("Given the symbols of the three subatomic particles: electrons (e), protons (p+) and neutrons (n0), which of the following is the CORRECT comparison of the absolute masses of protons, electrons and neutrons?", [("Mass of e > mass of p+ = mass of n", False), ("Mass of e = mass of p+ > mass of n0", False), ("Mass of e < mass of p+ < mass of n0", True), ("Mass of e > mass of p+ > mass of n0", False)])
 ]
 
+chemistry_questions_deep_explanation = [
+    ("Given the symbols electrons (e⁻), protons (p⁺) and neutrons (n⁰), which of the following is the CORRECT comparison of their absolute masses?", [
+        ("Mass of e⁻ > mass of p⁺ = mass of n⁰", False),
+        ("Mass of e⁻ = mass of p⁺ > mass of n⁰", False),
+        ("Mass of e⁻ < mass of p⁺ < mass of n⁰", True),
+        ("Mass of e⁻ > mass of p⁺ > mass of n⁰", False)
+    ]),
+    ("'The hydrogen atom moves in a fixed circular orbit associated with allowable energy states.' This statement describes which theory?", [
+        ("Planck's theory", False),
+        ("Bohr's theory", True),
+        ("Pauli's principle", False),
+        ("Aufbau's principle", False)
+    ]),
+    ("Which is the core electron configuration of the metal ion in ferric sulfate, Fe₂(SO₄)₃? (Atomic Number of Fe = 26)", [
+        ("[Ar] 4s²3d³", False),
+        ("[Ar] 4s²3d⁶", False),
+        ("[Ar] 3d⁵", True),
+        ("[Ar] 3d⁶", False)
+    ]),
+    ("An element has the electronic configuration 1s²2s²2p⁶3s²3p⁶4s²3d¹⁰4p⁵. In which block does this element belong?", [
+        ("f-block", False),
+        ("d-block", False),
+        ("p-block", True),
+        ("s-block", False)
+    ]),
+    ("In the modern periodic table, which group contains the most electronegative elements?", [
+        ("Alkali metals", False),
+        ("Halogens", True),
+        ("Chalcogens", False),
+        ("Noble gases", False)
+    ]),
+    ("An element has atomic number 55 and mass number 133. Which CORRECTLY describes a property of this element?", [
+        ("The non-metallic character of the element is high.", False),
+        ("The metallic character of the element is high.", True),
+        ("The element has high electron affinity.", False),
+        ("The element has high electronegativity.", False)
+    ]),
+    ("A chart shows a property that DECREASES across a period (left→right) and INCREASES down a group. Which property matches this trend?", [
+        ("Electronegativity", False),
+        ("Electron affinity", False),
+        ("Ionisation energy", False),
+        ("Atomic radius", True)
+    ]),
+    ("Which of the following characteristics of electromagnetic radiation is CORRECT?", [
+        ("The speed decreases with increasing wavelength.", False),
+        ("The speed increases with increasing frequency.", False),
+        ("The speed is independent of the medium it travels through.", True),
+        ("The wavelength is directly proportional to its frequency.", False)
+    ]),
+    ("Which is the CORRECT Lewis electron-dot symbol of MgO? (Atomic numbers: Mg = 12, O = 8)", [
+        ("Mg⁺ :O:²⁻  (4 dots on O)", False),
+        ("Mg²⁺ :O:  (2 dots on O)", False),
+        ("Mg⁺ :O:  (4 dots on O)", False),
+        ("Mg²⁺ :O:²⁻  (4 dots on O)", True)
+    ]),
+    ("Which of the following is CORRECT about the formation of a covalent bond?", [
+        ("Formed between positively and negatively charged ions.", False),
+        ("Formed between mobile and stationary electrons.", False),
+        ("Formed by the sharing of valence electrons.", True),
+        ("Formed by the transfer of valence electrons.", False)
+    ]),
+    ("Which of the following descriptions of the property of a covalent compound is CORRECT?", [
+        ("Covalent compounds have low melting and boiling points.", True),
+        ("Most covalent compounds are solids at room temperature.", False),
+        ("Most covalent compounds are soluble in water.", False),
+        ("Covalent compounds are non-volatile.", False)
+    ]),
+    ("The attractive force between molecules is known as ________.", [
+        ("Nuclear force", False),
+        ("Intermolecular force", True),
+        ("Lattice force", False),
+        ("Intramolecular force", False)
+    ]),
+    ("Which of the following is responsible for the unusually high boiling points of HF, H₂O, and NH₃?", [
+        ("London dispersion forces", False),
+        ("Hydrogen bonding", True),
+        ("Covalent bonding", False),
+        ("Ionic bonding", False)
+    ]),
+    ("The hybridization of Xe in XeF₄ is sp³d². Which of the following is the shape of XeF₄?", [
+        ("Octahedral", False),
+        ("Square planar", True),
+        ("Tetrahedral", False),
+        ("Seesaw shape", False)
+    ]),
+    ("CCl₄ has four polar C–Cl bonds, yet CCl₄ is a non-polar molecule. Which of the following explains this?", [
+        ("Non-polar because of the four polar C–Cl bonds.", False),
+        ("Non-polar because of the electronegativity difference between C and Cl.", False),
+        ("Even though C–Cl is polar, net dipole moment is different from zero.", False),
+        ("Even though C–Cl is polar, net dipole moment of the molecule is zero.", True)
+    ]),
+    ("Which of the following is a Lewis acid?", [
+        ("SO₄²⁻", False),
+        ("SO₃²⁻", False),
+        ("BF₃", True),
+        ("NH₃", False)
+    ]),
+    ("Which is the CORRECT electron configuration of the peroxide ion, O₂²⁻?", [
+        ("…(π2py²=π2pz²)(π*2py)²(σ*2z)²", False),
+        ("…(π2py²=π2pz²)(π*2py²=π*2pz²)", True),
+        ("…(π2py²=π2pz²)(π*2x)²", False),
+        ("…(π2py=π2pz)", False)
+    ]),
+    ("A chemical bond that results from the attractive force between shared electrons and a nonmetal nucleus is called ________.", [
+        ("Covalent bond", True),
+        ("Ionic bond", False),
+        ("Hydrogen bond", False),
+        ("Metallic bond", False)
+    ]),
+    ("A water molecule has two bond pairs and two lone pairs. Which of the following is CORRECT about these pairs?", [
+        ("Repulsion: bonding pair–bonding pair > lone pair–lone pair", False),
+        ("Repulsion: lone pair–lone pair > bonding pair–bonding pair", True),
+        ("Bonding pair–lone pair repulsion > lone pair–lone pair repulsion", False),
+        ("Lone pair–lone pair repulsion = bonding pair–bonding pair repulsion", False)
+    ])
+]
 
-chem_exam = Exam.objects.create(
-    title="Grade 12 Ethiopian University Entrance Chemistry 2016",
-    description="Chemistry practice exam",
-    duration_minutes=120,
+
+
+
+chem_examb = Exam.objects.create(
+    title="Grade 12 Ethiopian University Entrance Chemistry Part 1",
+    description="Chemistry practice exam part 1",
+    duration_minutes=60,
 )
 
-for question_text, choices in chemistry_questions_2016:
-    q = Question.objects.create(exam=chem_exam, text=question_text)
+for question_text, choices in chemistry_questions_deep_explanation:
+    q = Question.objects.create(exam=chem_examb, text=question_text)
     for choice_text, is_correct in choices:
         Answer.objects.create(question=q, text=choice_text, is_correct=is_correct)
