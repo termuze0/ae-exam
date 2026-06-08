@@ -1,322 +1,53 @@
 from exams.models import Exam, Question, Answer
-
-# =========================
-# Rational Expressions Exam
-# =========================
-
-rational_exam = Exam.objects.create(
-    title="Grade 12 Ethiopian University Entrance — Rational Expressions",
-    description="Rational expressions, inequalities, and rational functions practice exam",
-    duration_minutes=60,
-)
-
-rational_questions = [
-    (
-        "Which of the following is a rational expression?",
-        [
-            ("√(1 + x⁴) / (|x| + 1)", False),
-            ("(x² + x) / (x² − x)", True),
-            ("0.5x / (x² + 1)", False),
-            ("2x / (³√(x − 1))", False),
-        ],
-    ),
-    (
-        "Given the rational expression (x + 1) / (x² + 7x + 12), what is the domain of the expression?",
-        [
-            ("{x ∈ ℝ : x ≠ −3 and x ≠ −4}", True),
-            ("{x ∈ ℝ : x ≠ −1, x ≠ 3 and x ≠ 4}", False),
-            ("{x ∈ ℝ : x ≠ −1, x ≠ −3 and x ≠ −4}", False),
-            ("{x ∈ ℝ : x ≠ 3 and x ≠ 4}", False),
-        ],
-    ),
-    (
-        "A simplification of the rational expression (1/(x−1) + 1/(x+1)) ÷ (x/(x²−1)) yields:",
-        [
-            ("(3 − x) / x", False),
-            ("3 + x", False),
-            ("(3 + x) / x", True),
-            ("3 − x", False),
-        ],
-    ),
-    (
-        "If P(x) = (6x² + x³ − x⁴) / (x² − 4) and g(x) = (3x³ − 9x²) / (x² + 6x − 16), then which of the following is the solution set of the equation P(x)/g(x) = −3?",
-        [
-            ("{−1, 1}", False),
-            ("{1}", False),
-            ("{1, 5}", True),
-            ("ℝ \\ {−8, −2, 0, 2, 3}", False),
-        ],
-    ),
-    (
-        "The decomposed form of (3x² + 7x + 28) / (x³ + x² + 7x) is:",
-        [
-            ("4/x + (x − 3)/(x² + x + 7)", True),
-            ("4/x − (x − 3)/(x² + x + 7)", False),
-            ("3/x + (3 − x)/(x² + x + 7)", False),
-            ("4/x − (3 − x)/(x² + x + 7)", False),
-        ],
-    ),
-    (
-        "Consider the inequality (x² + 2x − 3)/(x + 2) ≤ 0. Then which of the following is the solution set of the inequality?",
-        [
-            ("(−∞, −3] ∪ [1, ∞)", False),
-            ("[−3, −2) ∪ [1, ∞)", False),
-            ("[−3, −2) ∪ (−2, 1]", True),
-            ("(−∞, −3] ∪ (−2, 1]", False),
-        ],
-    ),
-    (
-        "Which one of the following is true about f(x) = (x³ + 2x² − 2x − 4) / (2x² − 4)?",
-        [
-            ("The x-intercepts are (−2, 0), (±√2, 0).", True),
-            ("y = (1/2)x + 1 is its oblique asymptote.", False),
-            ("As x → −∞, f(x) → −∞.", False),
-            ("As x → −√2⁻, f(x) → −√2/2 − 1.", False),
-        ],
-    ),
-    (
-        "Which of the following is true about the graph of f(x) = (x − 1)/(x² − 1)?",
-        [
-            ("Its x-intercept is 1.", False),
-            ("y = 1 is its horizontal asymptote.", True),
-            ("x = 1 is its vertical asymptote.", False),
-            ("Its y-intercept is 1.", False),
-        ],
-    ),
-    (
-        "If f(x) = (x + 1)/(x − 1) and f(a) = 5, then f(2a) is equal to:",
-        [
-            ("2", True),
-            ("4", False),
-            ("6", False),
-            ("8", False),
-        ],
-    ),
-    (
-        "In one morning, if the shadow of a building is 14 meters long and the shadow of a tree of 15 meters height is 12 meters, then how long is the building in meters?",
-        [
-            ("28", False),
-            ("20", False),
-            ("30", False),
-            ("17.5", True),
-        ],
-    ),
+chemistry_questions_2016 = [
+    ("What are the molecular formulae of an alkene and alkyne containing seven carbon atoms, respectively?", [("C7H14 and C7H12", True), ("C7H16 and C7H14", False), ("C7H14 and C7H16", False), ("C3H12 and C7H14", False)]),
+    ("Which of the following is the CORRECT method of preparation of alkenes in the laboratory?", [("Alkylation of sodium acetylide with a primary alkyl halide.", False), ("Heating of sodium salt of an organic acid with soda lime.", False), ("Reaction of halogenated alkane with sodium.", False), ("Dehydration of alcohols with concentrated sulfuric acid.", True)]),
+    ("Which of the following is the CORRECT structure of benzene?", [("Hexagon with an alternating arrangement of three single and three double bonds (or a central ring)", True), ("Hexagon with only one double bond", False), ("Hexane ring without double bonds", False), ("Pentagon ring", False)]),
+    ("Which of the following is the product of fractional distillation of crude oil?", [("Producer gas", False), ("Naphthalene", False), ("Water gas", False), ("Kerosene", True)]),
+    ("What is the molecular formula and IUPAC name of a saturated monocarboxylic acid having six carbon atoms?", [("C5H11COOH, heptanoic acid", False), ("C6H13COOH, heptanoic acid", False), ("C5H11COOH, hexanoic acid", True), ("C6H13COOH, hexanoic acid", False)]),
+    ("Given the structure CH3-O-CH3 (or CH3-CH2-O-CH3/similar structure denoted in graphic), for the ether representation shown:", [("Methyl ethanoate", False), ("Ethyl ethanoate", False), ("Propyl formate", False), ("Ethyl acetate (or structural equivalent)", True)]),
+    ("During summer, the average value for the temperature measured in a certain chemistry laboratory is 298.15 K. How many decimal places are there in the measured value?", [("5", False), ("3", False), ("2", True), ("1", False)]),
+    ("Which of the following is the CORRECT Lewis electron - dot symbol of MgO? (Atomic number: Mg=12 and O=8)", [("Mg+ :O: 2-", False), ("Mg+2 :O: 2-", True), ("Mg+ :O:", False), ("Mg+2 :O:", False)]),
+    ("A student collected four beakers in his/her laboratory and added some small amounts of the following: naphthalene to the first, graphite to the second, iodine to the third and alcohol to the fourth. If they added equal volume of water to each of the above beakers and shake each beaker, which of the following will be their observation?", [("There will be dissolution in the first three beakers.", False), ("Water will dissolve iodine rather than graphite.", False), ("Water will dissolve the whole given chemicals in the four beakers.", False), ("There will be dissolution of alcohol in the fourth beaker.", True)]),
+    ("Which of the following explanations about reversible and irreversible reactions is CORRECT?", [("A reaction that has only a forward reaction or a reverse reaction is known as a reversible chemical reaction.", False), ("A reaction that proceeds from reactant to product and from product to reactant is known as an irreversible reaction.", False), ("Chemical reactions that proceed only towards the formation of a product are known as irreversible reactions.", True), ("Chemical reactions that proceed only towards the formation of a product are known as reversible reactions.", False)]),
+    ("Consider the following three steps: Step 1: Electrolysis of water and fractional distillation of air; Step 2: Passing hot mixture of gases through a condenser; Step 3: Introducing hydrogen and nitrogen gases in a chamber containing iron particles at a temperature of 300 - 500 °C and a pressure of 15 - 25 MPa. Which of the following is the CORRECT sequence involved during the industrial production of ammonia using the Haber process?", [("Step 1 -> Step 3 -> Step 2", True), ("Step 2 -> Step 3 -> Step 1", False), ("Step 2 -> Step 1 -> Step 3", False), ("Step 1 -> Step 2 -> Step 3", False)]),
+    ("Which of the following is a physical property of nitric acid, HNO3?", [("On exposure to light, it turns brown.", False), ("Nitric acid is a corrosive chemical.", False), ("Nitric acid has a pungent smell.", True), ("It forms large number of salts.", False)]),
+    ("Which of the following is the CORRECT explanation about herbicides?", [("Selective herbicides control specific weed species, leaving the desired crop unharmed.", True), ("Organochlorine compounds are the most common herbicide substances.", False), ("Herbicides are substances that are used to control unwanted insects.", False), ("Herbicides are substances that are used to enhance the growth of important plants.", False)]),
+    ("A student collected information on the preparation of the local alcoholic drink 'ARAKI' involving Step 1 (Distillation), Step 2 (Liquefying dough & fermenting), Step 3 (Bikel & starter preparation), Step 4 (Baking bread, mixing with starter & fermenting). Which of the following is the correct procedure for the preparation of Araki?", [("Step-2 -> Step-4 -> Step-3 -> Step-1", False), ("Step-2 -> Step-3 -> Step-4 -> Step-1", False), ("Step-3 -> Step-4 -> Step-2 -> Step-1", True), ("Step-4 -> Step-3 -> Step-2 -> Step-1", False)]),
+    ("Which one of the following synthetic polymers is used to make squeeze bottles, plastic wrapping and electrical insulation?", [("Polypropylene", False), ("Polyvinylchloride", False), ("Polyethylene", True), ("Polymethyl methacrylate", False)]),
+    ("Which of the following descriptions of the property of a covalent compound is CORRECT?", [("Covalent compounds have low melting and boiling points.", True), ("Most covalent compounds are solids at room temperature.", False), ("Most covalent compounds are soluble in water.", False), ("Covalent compounds are non-volatile.", False)]),
+    ("The attractive force between molecules is known as", [("nuclear force", False), ("intermolecular force", True), ("lattice force", False), ("intramolecular forces", False)]),
+    ("The hybridization of the central atom xenon (Xe) in xenon tetrafluoride, XeF4, is sp3d2. Which of the following is the shape of XeF4?", [("Octahedral", False), ("Square planar", True), ("Tetrahedral", False), ("Seesaw shape", False)]),
+    ("Which of the following is the CORRECT electron configuration of a peroxide ion, O2^2-?", [("(sigma_1s)^2(sigma*_1s)^2(sigma_2s)^2(sigma*_2s)^2(sigma_2px)^2(pi_2py^2=pi_2pz^2)(pi*_2py^2=pi*_2pz^2)", True), ("Alternative B config", False), ("Alternative C config", False), ("Alternative D config", False)]),
+    ("Consider the reaction: N2(g) + O2(g) -> 2NO(g). If the rate of disappearance of N2 is 2.5 * 10^-6 M/s, what is the rate of reaction for the formation of NO?", [("5.0 * 10^-6 M/s", True), ("1.25 * 10^-3 M/s", False), ("2.50 * 10^-3 M/s", False), ("2.50 * 10^-6 M/s", False)]),
+    ("Which of the following is a Lewis acid?", [("SO4^2-", False), ("SO3^2-", False), ("BF3", True), ("NH3", False)]),
+    ("The pH of a 0.10 M solution of an aqueous solution of a certain acid is 3. What is the value of acid ionization constant (Ka) of this acid?", [("1.0 * 10^-7", False), ("1.0 * 10^-5", True), ("1.0 * 10^-3", False), ("1.0 * 10^-1", False)]),
+    ("The shift in the position of equilibrium caused by the addition of an ion already involved in the reaction is known as", [("common ion effect", True), ("buffer ion effect", False), ("hydrolysis - effect", False), ("titration - effect", False)]),
+    ("Which of the following is CORRECT about equivalents of acids and bases?", [("The volume of an acid or base required to reach equivalence point during acid - base titration reaction.", False), ("The number of moles of an acid or base required to form a one molar aqueous acidic or basic solution.", False), ("It is the amount of a substance that is required to react with one mole of hydroxide ions in redox reactions.", False), ("It is the amount of a substance that is required to react with one mole of hydrogen ions in acid - base reactions.", True)]),
+    ("A 250 mL solution is formed from 24.5 g of sulfuric acid (H2SO4). What is the normality of this solution? (Mol. wt. H2SO4 = 98 g/mol)", [("4.00 N", False), ("2.00 N", True), ("0.250 N", False), ("0.125 N", False)]),
+    ("Which of the following reaction is used for the preparation of bases?", [("Reaction of metal hydroxides with dilute acids.", False), ("Reaction of active metal oxides with water.", True), ("Heating of a salt with a non - volatile acid.", False), ("Heating of carbonates with dilute acids.", False)]),
+    ("Which of the following salts is used in the treatment of waste water?", [("CaCO3", False), ("BaSO4", False), ("FeCl3", True), ("KNO3", False)]),
+    ("A student dissolved 10 mL of concentrated HCl in the first beaker and 10 mL of concentrated CH3COOH in the second beaker containing water. Which of the following would occur in the solution?", [("In the first beaker, a large fraction of HCl dissociates into ions and in the second beaker, a small fraction of CH3COOH dissociates into ions.", True), ("In the first beaker, a small fraction of HCl dissociates into ions and in the second beaker, a large fraction of CH3COOH dissociates into ions.", False), ("There is no dissociation or ionization of the HCl and CH3COOH in both the first and second beakers.", False), ("The amount of HCl dissociated in the first beaker and the amount of CH3COOH dissociated in the second beaker are identical.", False)]),
+    ("Consider the steps during the extraction of aluminum from its bauxite ore by the Hall process: I. Treating mixture with acid, II. Heating aluminum oxide strongly, III. Heating ore with NaOH, IV. Conversion to soluble sodium aluminate, V. Electrolysis of molten mixture. Which of the following is the CORRECT sequence of production?", [("III, IV, I, II and V", True), ("IV, II, I, III and V", False), ("V, I, II, IV and III", False), ("II, I, III, IV and V", False)]),
+    ("Which of the following food preservation methods leaves a product without loss of aroma or flavor?", [("Vacuum - packing", False), ("Freeze - drying", True), ("Freezing", False), ("Melting", False)]),
+    ("The electronic configuration of an element in the periodic table is 1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p5. Which block does this element belong?", [("f-block", False), ("d-block", False), ("p-block", True), ("s-block", False)]),
+    ("Consider the chart showing general periodic properties: 'Decreases' going across a period left-to-right, and 'Increases' going down a group. Which property CORRECTLY agrees with this trend?", [("Electronegativity", False), ("Electron affinity", False), ("Ionization energy", False), ("Atomic radius", True)]),
+    ("Which of the following is CORRECT about the formation of a covalent bond? A covalent bond is formed", [("between positively and negatively charged ions.", False), ("between mobile and stationary electrons.", False), ("by the sharing of valence electrons.", True), ("by the transfer of valence electrons.", False)]),
+    ("The molecule of carbon tetrachloride (CCl4) has four polar (C-Cl) bonds. However, CCl4 is a non-polar molecule. Which of the following explains the reason for the observed property of CCl4?", [("The molecule is non-polar because of the presence of four polar C-Cl bonds in the molecule.", False), ("The molecule is non-polar because of the difference in electronegativity between carbon and chlorine.", False), ("Even though the bond in CCl4 is polar, the net dipole moment of the molecule is different from zero.", False), ("Even though the bond in CCl4 is polar, the net dipole moment of the molecule is zero.", True)]),
+    ("Which of the following is responsible for the unusual high boiling points of HF, H2O and NH3?", [("London dispersion forces", False), ("Hydrogen bonding", True), ("Covalent bonding", False), ("Ionic bonding", False)]),
+    ("From the assumption of kinetic molecular theory of gases, which of the following is CORRECT?", [("The pressure of a gas is the effect of the negligible volume of the gas compared to the total volume of the gas", False), ("The average kinetic energy of gas particles is inversely proportional to the absolute temperature of the gas.", False), ("There are some forces of attraction or repulsion between gas particles.", False), ("Under ordinary conditions, the total volume of gas molecules is much smaller than the total volume of gas.", True)]),
+    ("Which of the following is CORRECT about the phase change observed in water?", [("Water starts to evaporate at the boiling point and condenses at the melting point.", False), ("When a solid ice is heated, it is changed to liquid water without melting.", False), ("At the boiling point temperature, water exists in three different physical states.", False), ("At the melting point of ice, the temperature remains constant.", True)]),
+    ("Given the symbols of the three subatomic particles: electrons (e), protons (p+) and neutrons (n0), which of the following is the CORRECT comparison of the absolute masses of protons, electrons and neutrons?", [("Mass of e > mass of p+ = mass of n", False), ("Mass of e = mass of p+ > mass of n0", False), ("Mass of e < mass of p+ < mass of n0", True), ("Mass of e > mass of p+ > mass of n0", False)])
 ]
 
-for question_text, choices in rational_questions:
-    q = Question.objects.create(
-        exam=rational_exam,
-        text=question_text,
-    )
-    for choice_text, is_correct in choices:
-        Answer.objects.create(
-            question=q,
-            text=choice_text,
-            is_correct=is_correct,
-        )
 
-
-# =========================
-# Calculus Exam
-# =========================
-
-calculus_exam = Exam.objects.create(
-    title="Grade 12 Ethiopian University Entrance — Calculus",
-    description="Derivatives, integrals, and applications of calculus practice exam",
-    duration_minutes=60,
+chem_exam = Exam.objects.create(
+    title="Grade 12 Ethiopian University Entrance Chemistry 2016",
+    description="Chemistry practice exam",
+    duration_minutes=120,
 )
 
-calculus_questions = [
-    (
-        "Which one of the following statements is true?",
-        [
-            ("The indefinite integral of any continuous function is unique.", False),
-            ("Integration is the process of finding f(x) from its derivative.", True),
-            ("If a is in the domain of f, then f is always differentiable at a.", False),
-            ("Integral of the function is an antiderivative of its derivative.", False),
-        ],
-    ),
-    (
-        "Which one of the following is the absolute maximum of the function f(x) = (x² − 2x + 4)/(x − 2) on the interval [−3, 1]?",
-        [
-            ("−19/5", False),
-            ("−2", False),
-            ("−3", False),
-            ("6", True),
-        ],
-    ),
-    (
-        "Which of the following is necessarily true?",
-        [
-            ("∫₋ₐᵃ f(x) dx = 0, if f(x) is an odd function, a ∈ ℝ.", False),
-            ("∫₋₃⁴ 7/(x−2) dx = ∫₋₃³ 7/(x−2) dx + ∫₃⁴ 7/(x−2) dx", False),
-            ("∫₋₃⁶ 3/(x²−9) dx = ∫₋₃⁰ 3/(x²−9) dx + ∫₀⁶ 3/(x²−9) dx", False),
-            ("∫₋ₐᵃ f(x) dx = 2∫₀ᵃ f(x) dx, if f is an even function, a ∈ ℝ.", True),
-        ],
-    ),
-    (
-        "If f(x) = (3e⁴ + 5π²) / 2, then what is the value of f'(x)?",
-        [
-            ("6e³ + 10π", False),
-            ("6e³", False),
-            ("0", True),
-            ("11", False),
-        ],
-    ),
-    (
-        "Which of the following is the area (in square units) of the region bounded by the graph of f(x) = x² − 4x + 4, the x-axis between the lines x = 1 and x = 5?",
-        [
-            ("28/3", False),
-            ("40/3", True),
-            ("31/3", False),
-            ("10", False),
-        ],
-    ),
-    (
-        "Which one of the following correctly describes rate of change?",
-        [
-            ("A positive rate of change is the case when the value of one quantity say x increases and the other related quantity say y decreases.", False),
-            ("A negative rate of change is the case when the value of two related quantities x and y decreases at the same time.", False),
-            ("A negative rate of change is the case when the value of one quantity say x increases and the other related quantity say y also increases.", False),
-            ("A zero rate of change is the case when the value of one quantity x increases and the other related quantity say y remains constant.", True),
-        ],
-    ),
-    (
-        "Which of the following best describes the derivative of a function at a point?",
-        [
-            ("It is the slope of the secant line between two points on the curve.", False),
-            ("It is the average rate of change over an interval.", False),
-            ("It is the slope of the tangent line to the curve at that point.", True),
-            ("It is the area under the curve from 0 to that point.", False),
-        ],
-    ),
-    (
-        "If f(x) = √(x + 1/x), then which of the following is equal to f(x)·f'(x)?",
-        [
-            ("(x² − 1) / (2x²)", True),
-            ("(x² − 1) / (2x²)", False),
-            ("(x² + 1) / (2x²)", False),
-            ("(x² − x) / x", False),
-        ],
-    ),
-    (
-        "Which one of the following is true about the function f(x) = 2x³ − 3x² − 36x + 1?",
-        [
-            ("f is decreasing on (−∞, −2) ∪ (3, ∞)", False),
-            ("f(−2) is a local minimum of f.", False),
-            ("The critical numbers of f are x = −2, 3.", True),
-            ("f(3) is a local maximum.", False),
-        ],
-    ),
-    (
-        "Which one of the following is the equation of the tangent line to the graph of f(x) = √x at the point (1, 1)?",
-        [
-            ("y = (1/2)x + 1/2", True),
-            ("y = x − 1", False),
-            ("y = (1/2)x + 1", False),
-            ("y = (1/2)x − 1/2", False),
-        ],
-    ),
-    (
-        "Suppose the side of an isosceles right-angled triangle is increasing at the rate of 4.5 cm/sec. Find the rate at which the area is increasing at the instant when the side is 6 cm.",
-        [
-            ("54 cm²/sec", False),
-            ("13.5 cm²/sec", False),
-            ("27 cm²/sec", True),
-            ("18 cm²/sec", False),
-        ],
-    ),
-    (
-        "Which one of the following is the antiderivative of f(x) = 4x³ − 3x² + 2x − 1?",
-        [
-            ("F(x) = 12x² − 6x + 2 + c", False),
-            ("F(x) = 4x⁴ − 3x³ + 2x² − x + c", False),
-            ("F(x) = 4x² − 3x + 2 − x + c", False),
-            ("F(x) = x⁴ − x³ + x² − x + c", True),
-        ],
-    ),
-    (
-        "Evaluate the definite integral ∫₁⁴ (5/2)x^(3/2) dx",
-        [
-            ("31", True),
-            ("32", False),
-            ("15.5", False),
-            ("16.5", False),
-        ],
-    ),
-    (
-        "Suppose that the speed of a car is given by v(t) = 4t m/s and assume that the distance at t = 0 s is 0 m. What is the total distance covered by the car after t = 6 s?",
-        [
-            ("24 m", False),
-            ("72 m", True),
-            ("36 m", False),
-            ("60 m", False),
-        ],
-    ),
-    (
-        "Which of the following is true about the gradient of a curve?",
-        [
-            ("It is the number that describes the steepness and direction of the line which intersects the curve at a point.", True),
-            ("It is the function that describes the monotonicity of the line which intersects the curve at a point.", False),
-            ("It is the function that describes the monotonicity of the line which intersects the curve at two points.", False),
-            ("It is the number that describes the steepness and direction of the line which intersects the curve at more than one point.", False),
-        ],
-    ),
-    (
-        "Which of the following is the derivative of f(x) = −x / √(x² − 1)?",
-        [
-            ("f'(x) = 1 / (x² − 1)^(3/2)", True),
-            ("f'(x) = (x² − 1) / √(x² − 1)", False),
-            ("f'(x) = 1 / √(x² − 1)", False),
-            ("f'(x) = x / (x² − 1)^(3/2)", False),
-        ],
-    ),
-    (
-        "Which of the following is the interval on which f(x) = 2x⁴ + 4x³ + 2x² + 1 is increasing?",
-        [
-            ("(−∞, −1) ∪ (1/2, 0)", False),
-            ("(−∞, ∞)", False),
-            ("(−1, −1/2) ∪ [0, ∞)", True),
-            ("(−1/2, 0)", False),
-        ],
-    ),
-    (
-        "Which of the following is equal to the indefinite integral ∫ (3x − 1) / (2√x) dx?",
-        [
-            ("x(√x − 1) + c", False),
-            ("√x(x − 1) + c", True),
-            ("(1/2)√x(√x − 1)", False),
-            ("2√x(x − 1) + c", False),
-        ],
-    ),
-    (
-        "What is the average rate of change of f(x) = x³ − 2x over the interval 1 ≤ x ≤ 6?",
-        [
-            ("37/5", False),
-            ("203/5", False),
-            ("46", False),
-            ("41", True),
-        ],
-    ),
-    (
-        "Consider the function f(x) = x³ − 3x² + 3 on (−2, 3). Then which of the following point is local minimum and local maximum of f(x) respectively?",
-        [
-            ("(3, 3) and (−2, −27)", False),
-            ("(2, −1) and (0, 3)", True),
-            ("(0, 3) and (2, −1)", False),
-            ("(−2, −27) and (0, 3)", False),
-        ],
-    ),
-]
-
-for question_text, choices in calculus_questions:
-    q = Question.objects.create(
-        exam=calculus_exam,
-        text=question_text,
-    )
+for question_text, choices in chemistry_questions_2016:
+    q = Question.objects.create(exam=chem_exam, text=question_text)
     for choice_text, is_correct in choices:
-        Answer.objects.create(
-            question=q,
-            text=choice_text,
-            is_correct=is_correct,
-        )
+        Answer.objects.create(question=q, text=choice_text, is_correct=is_correct)
