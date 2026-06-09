@@ -11,7 +11,7 @@ from .serializers import (
 class ExamListAPIView(APIView):
 
     def get(self, request):
-        exams = Exam.objects.all().order_by('-created_at')
+        exams = Exam.objects.all().order_by('-id')
 
         serializer = ExamSerializer(
             exams,
