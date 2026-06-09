@@ -1,172 +1,130 @@
 from exams.models import Exam, Question, Answer
-chemistry_questions_2016 = [
-    ("What are the molecular formulae of an alkene and alkyne containing seven carbon atoms, respectively?", [("C7H14 and C7H12", True), ("C7H16 and C7H14", False), ("C7H14 and C7H16", False), ("C3H12 and C7H14", False)]),
-    ("Which of the following is the CORRECT method of preparation of alkenes in the laboratory?", [("Alkylation of sodium acetylide with a primary alkyl halide.", False), ("Heating of sodium salt of an organic acid with soda lime.", False), ("Reaction of halogenated alkane with sodium.", False), ("Dehydration of alcohols with concentrated sulfuric acid.", True)]),
-    ("Which of the following is the CORRECT structure of benzene?", [("Hexagon with an alternating arrangement of three single and three double bonds (or a central ring)", True), ("Hexagon with only one double bond", False), ("Hexane ring without double bonds", False), ("Pentagon ring", False)]),
-    ("Which of the following is the product of fractional distillation of crude oil?", [("Producer gas", False), ("Naphthalene", False), ("Water gas", False), ("Kerosene", True)]),
-    ("What is the molecular formula and IUPAC name of a saturated monocarboxylic acid having six carbon atoms?", [("C5H11COOH, heptanoic acid", False), ("C6H13COOH, heptanoic acid", False), ("C5H11COOH, hexanoic acid", True), ("C6H13COOH, hexanoic acid", False)]),
-    ("Given the structure CH3-O-CH3 (or CH3-CH2-O-CH3/similar structure denoted in graphic), for the ether representation shown:", [("Methyl ethanoate", False), ("Ethyl ethanoate", False), ("Propyl formate", False), ("Ethyl acetate (or structural equivalent)", True)]),
-    ("During summer, the average value for the temperature measured in a certain chemistry laboratory is 298.15 K. How many decimal places are there in the measured value?", [("5", False), ("3", False), ("2", True), ("1", False)]),
-    ("Which of the following is the CORRECT Lewis electron - dot symbol of MgO? (Atomic number: Mg=12 and O=8)", [("Mg+ :O: 2-", False), ("Mg+2 :O: 2-", True), ("Mg+ :O:", False), ("Mg+2 :O:", False)]),
-    ("A student collected four beakers in his/her laboratory and added some small amounts of the following: naphthalene to the first, graphite to the second, iodine to the third and alcohol to the fourth. If they added equal volume of water to each of the above beakers and shake each beaker, which of the following will be their observation?", [("There will be dissolution in the first three beakers.", False), ("Water will dissolve iodine rather than graphite.", False), ("Water will dissolve the whole given chemicals in the four beakers.", False), ("There will be dissolution of alcohol in the fourth beaker.", True)]),
-    ("Which of the following explanations about reversible and irreversible reactions is CORRECT?", [("A reaction that has only a forward reaction or a reverse reaction is known as a reversible chemical reaction.", False), ("A reaction that proceeds from reactant to product and from product to reactant is known as an irreversible reaction.", False), ("Chemical reactions that proceed only towards the formation of a product are known as irreversible reactions.", True), ("Chemical reactions that proceed only towards the formation of a product are known as reversible reactions.", False)]),
-    ("Consider the following three steps: Step 1: Electrolysis of water and fractional distillation of air; Step 2: Passing hot mixture of gases through a condenser; Step 3: Introducing hydrogen and nitrogen gases in a chamber containing iron particles at a temperature of 300 - 500 °C and a pressure of 15 - 25 MPa. Which of the following is the CORRECT sequence involved during the industrial production of ammonia using the Haber process?", [("Step 1 -> Step 3 -> Step 2", True), ("Step 2 -> Step 3 -> Step 1", False), ("Step 2 -> Step 1 -> Step 3", False), ("Step 1 -> Step 2 -> Step 3", False)]),
-    ("Which of the following is a physical property of nitric acid, HNO3?", [("On exposure to light, it turns brown.", False), ("Nitric acid is a corrosive chemical.", False), ("Nitric acid has a pungent smell.", True), ("It forms large number of salts.", False)]),
-    ("Which of the following is the CORRECT explanation about herbicides?", [("Selective herbicides control specific weed species, leaving the desired crop unharmed.", True), ("Organochlorine compounds are the most common herbicide substances.", False), ("Herbicides are substances that are used to control unwanted insects.", False), ("Herbicides are substances that are used to enhance the growth of important plants.", False)]),
-    ("A student collected information on the preparation of the local alcoholic drink 'ARAKI' involving Step 1 (Distillation), Step 2 (Liquefying dough & fermenting), Step 3 (Bikel & starter preparation), Step 4 (Baking bread, mixing with starter & fermenting). Which of the following is the correct procedure for the preparation of Araki?", [("Step-2 -> Step-4 -> Step-3 -> Step-1", False), ("Step-2 -> Step-3 -> Step-4 -> Step-1", False), ("Step-3 -> Step-4 -> Step-2 -> Step-1", True), ("Step-4 -> Step-3 -> Step-2 -> Step-1", False)]),
-    ("Which one of the following synthetic polymers is used to make squeeze bottles, plastic wrapping and electrical insulation?", [("Polypropylene", False), ("Polyvinylchloride", False), ("Polyethylene", True), ("Polymethyl methacrylate", False)]),
-    ("Which of the following descriptions of the property of a covalent compound is CORRECT?", [("Covalent compounds have low melting and boiling points.", True), ("Most covalent compounds are solids at room temperature.", False), ("Most covalent compounds are soluble in water.", False), ("Covalent compounds are non-volatile.", False)]),
-    ("The attractive force between molecules is known as", [("nuclear force", False), ("intermolecular force", True), ("lattice force", False), ("intramolecular forces", False)]),
-    ("The hybridization of the central atom xenon (Xe) in xenon tetrafluoride, XeF4, is sp3d2. Which of the following is the shape of XeF4?", [("Octahedral", False), ("Square planar", True), ("Tetrahedral", False), ("Seesaw shape", False)]),
-    ("Which of the following is the CORRECT electron configuration of a peroxide ion, O2^2-?", [("(sigma_1s)^2(sigma*_1s)^2(sigma_2s)^2(sigma*_2s)^2(sigma_2px)^2(pi_2py^2=pi_2pz^2)(pi*_2py^2=pi*_2pz^2)", True), ("Alternative B config", False), ("Alternative C config", False), ("Alternative D config", False)]),
-    ("Consider the reaction: N2(g) + O2(g) -> 2NO(g). If the rate of disappearance of N2 is 2.5 * 10^-6 M/s, what is the rate of reaction for the formation of NO?", [("5.0 * 10^-6 M/s", True), ("1.25 * 10^-3 M/s", False), ("2.50 * 10^-3 M/s", False), ("2.50 * 10^-6 M/s", False)]),
-    ("Which of the following is a Lewis acid?", [("SO4^2-", False), ("SO3^2-", False), ("BF3", True), ("NH3", False)]),
-    ("The pH of a 0.10 M solution of an aqueous solution of a certain acid is 3. What is the value of acid ionization constant (Ka) of this acid?", [("1.0 * 10^-7", False), ("1.0 * 10^-5", True), ("1.0 * 10^-3", False), ("1.0 * 10^-1", False)]),
-    ("The shift in the position of equilibrium caused by the addition of an ion already involved in the reaction is known as", [("common ion effect", True), ("buffer ion effect", False), ("hydrolysis - effect", False), ("titration - effect", False)]),
-    ("Which of the following is CORRECT about equivalents of acids and bases?", [("The volume of an acid or base required to reach equivalence point during acid - base titration reaction.", False), ("The number of moles of an acid or base required to form a one molar aqueous acidic or basic solution.", False), ("It is the amount of a substance that is required to react with one mole of hydroxide ions in redox reactions.", False), ("It is the amount of a substance that is required to react with one mole of hydrogen ions in acid - base reactions.", True)]),
-    ("A 250 mL solution is formed from 24.5 g of sulfuric acid (H2SO4). What is the normality of this solution? (Mol. wt. H2SO4 = 98 g/mol)", [("4.00 N", False), ("2.00 N", True), ("0.250 N", False), ("0.125 N", False)]),
-    ("Which of the following reaction is used for the preparation of bases?", [("Reaction of metal hydroxides with dilute acids.", False), ("Reaction of active metal oxides with water.", True), ("Heating of a salt with a non - volatile acid.", False), ("Heating of carbonates with dilute acids.", False)]),
-    ("Which of the following salts is used in the treatment of waste water?", [("CaCO3", False), ("BaSO4", False), ("FeCl3", True), ("KNO3", False)]),
-    ("A student dissolved 10 mL of concentrated HCl in the first beaker and 10 mL of concentrated CH3COOH in the second beaker containing water. Which of the following would occur in the solution?", [("In the first beaker, a large fraction of HCl dissociates into ions and in the second beaker, a small fraction of CH3COOH dissociates into ions.", True), ("In the first beaker, a small fraction of HCl dissociates into ions and in the second beaker, a large fraction of CH3COOH dissociates into ions.", False), ("There is no dissociation or ionization of the HCl and CH3COOH in both the first and second beakers.", False), ("The amount of HCl dissociated in the first beaker and the amount of CH3COOH dissociated in the second beaker are identical.", False)]),
-    ("Consider the steps during the extraction of aluminum from its bauxite ore by the Hall process: I. Treating mixture with acid, II. Heating aluminum oxide strongly, III. Heating ore with NaOH, IV. Conversion to soluble sodium aluminate, V. Electrolysis of molten mixture. Which of the following is the CORRECT sequence of production?", [("III, IV, I, II and V", True), ("IV, II, I, III and V", False), ("V, I, II, IV and III", False), ("II, I, III, IV and V", False)]),
-    ("Which of the following food preservation methods leaves a product without loss of aroma or flavor?", [("Vacuum - packing", False), ("Freeze - drying", True), ("Freezing", False), ("Melting", False)]),
-    ("The electronic configuration of an element in the periodic table is 1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p5. Which block does this element belong?", [("f-block", False), ("d-block", False), ("p-block", True), ("s-block", False)]),
-    ("Consider the chart showing general periodic properties: 'Decreases' going across a period left-to-right, and 'Increases' going down a group. Which property CORRECTLY agrees with this trend?", [("Electronegativity", False), ("Electron affinity", False), ("Ionization energy", False), ("Atomic radius", True)]),
-    ("Which of the following is CORRECT about the formation of a covalent bond? A covalent bond is formed", [("between positively and negatively charged ions.", False), ("between mobile and stationary electrons.", False), ("by the sharing of valence electrons.", True), ("by the transfer of valence electrons.", False)]),
-    ("The molecule of carbon tetrachloride (CCl4) has four polar (C-Cl) bonds. However, CCl4 is a non-polar molecule. Which of the following explains the reason for the observed property of CCl4?", [("The molecule is non-polar because of the presence of four polar C-Cl bonds in the molecule.", False), ("The molecule is non-polar because of the difference in electronegativity between carbon and chlorine.", False), ("Even though the bond in CCl4 is polar, the net dipole moment of the molecule is different from zero.", False), ("Even though the bond in CCl4 is polar, the net dipole moment of the molecule is zero.", True)]),
-    ("Which of the following is responsible for the unusual high boiling points of HF, H2O and NH3?", [("London dispersion forces", False), ("Hydrogen bonding", True), ("Covalent bonding", False), ("Ionic bonding", False)]),
-    ("From the assumption of kinetic molecular theory of gases, which of the following is CORRECT?", [("The pressure of a gas is the effect of the negligible volume of the gas compared to the total volume of the gas", False), ("The average kinetic energy of gas particles is inversely proportional to the absolute temperature of the gas.", False), ("There are some forces of attraction or repulsion between gas particles.", False), ("Under ordinary conditions, the total volume of gas molecules is much smaller than the total volume of gas.", True)]),
-    ("Which of the following is CORRECT about the phase change observed in water?", [("Water starts to evaporate at the boiling point and condenses at the melting point.", False), ("When a solid ice is heated, it is changed to liquid water without melting.", False), ("At the boiling point temperature, water exists in three different physical states.", False), ("At the melting point of ice, the temperature remains constant.", True)]),
-    ("Given the symbols of the three subatomic particles: electrons (e), protons (p+) and neutrons (n0), which of the following is the CORRECT comparison of the absolute masses of protons, electrons and neutrons?", [("Mass of e > mass of p+ = mass of n", False), ("Mass of e = mass of p+ > mass of n0", False), ("Mass of e < mass of p+ < mass of n0", True), ("Mass of e > mass of p+ > mass of n0", False)])
-]
-
-chemistry_questions_deep_explanation = [
-    ("Given the symbols electrons (e⁻), protons (p⁺) and neutrons (n⁰), which of the following is the CORRECT comparison of their absolute masses?", [
-        ("Mass of e⁻ > mass of p⁺ = mass of n⁰", False),
-        ("Mass of e⁻ = mass of p⁺ > mass of n⁰", False),
-        ("Mass of e⁻ < mass of p⁺ < mass of n⁰", True),
-        ("Mass of e⁻ > mass of p⁺ > mass of n⁰", False)
-    ]),
-    ("'The hydrogen atom moves in a fixed circular orbit associated with allowable energy states.' This statement describes which theory?", [
-        ("Planck's theory", False),
-        ("Bohr's theory", True),
-        ("Pauli's principle", False),
-        ("Aufbau's principle", False)
-    ]),
-    ("Which is the core electron configuration of the metal ion in ferric sulfate, Fe₂(SO₄)₃? (Atomic Number of Fe = 26)", [
-        ("[Ar] 4s²3d³", False),
-        ("[Ar] 4s²3d⁶", False),
-        ("[Ar] 3d⁵", True),
-        ("[Ar] 3d⁶", False)
-    ]),
-    ("An element has the electronic configuration 1s²2s²2p⁶3s²3p⁶4s²3d¹⁰4p⁵. In which block does this element belong?", [
-        ("f-block", False),
-        ("d-block", False),
-        ("p-block", True),
-        ("s-block", False)
-    ]),
-    ("In the modern periodic table, which group contains the most electronegative elements?", [
-        ("Alkali metals", False),
-        ("Halogens", True),
-        ("Chalcogens", False),
-        ("Noble gases", False)
-    ]),
-    ("An element has atomic number 55 and mass number 133. Which CORRECTLY describes a property of this element?", [
-        ("The non-metallic character of the element is high.", False),
-        ("The metallic character of the element is high.", True),
-        ("The element has high electron affinity.", False),
-        ("The element has high electronegativity.", False)
-    ]),
-    ("A chart shows a property that DECREASES across a period (left→right) and INCREASES down a group. Which property matches this trend?", [
-        ("Electronegativity", False),
-        ("Electron affinity", False),
-        ("Ionisation energy", False),
-        ("Atomic radius", True)
-    ]),
-    ("Which of the following characteristics of electromagnetic radiation is CORRECT?", [
-        ("The speed decreases with increasing wavelength.", False),
-        ("The speed increases with increasing frequency.", False),
-        ("The speed is independent of the medium it travels through.", True),
-        ("The wavelength is directly proportional to its frequency.", False)
-    ]),
-    ("Which is the CORRECT Lewis electron-dot symbol of MgO? (Atomic numbers: Mg = 12, O = 8)", [
-        ("Mg⁺ :O:²⁻  (4 dots on O)", False),
-        ("Mg²⁺ :O:  (2 dots on O)", False),
-        ("Mg⁺ :O:  (4 dots on O)", False),
-        ("Mg²⁺ :O:²⁻  (4 dots on O)", True)
-    ]),
-    ("Which of the following is CORRECT about the formation of a covalent bond?", [
-        ("Formed between positively and negatively charged ions.", False),
-        ("Formed between mobile and stationary electrons.", False),
-        ("Formed by the sharing of valence electrons.", True),
-        ("Formed by the transfer of valence electrons.", False)
-    ]),
-    ("Which of the following descriptions of the property of a covalent compound is CORRECT?", [
-        ("Covalent compounds have low melting and boiling points.", True),
-        ("Most covalent compounds are solids at room temperature.", False),
-        ("Most covalent compounds are soluble in water.", False),
-        ("Covalent compounds are non-volatile.", False)
-    ]),
-    ("The attractive force between molecules is known as ________.", [
-        ("Nuclear force", False),
-        ("Intermolecular force", True),
-        ("Lattice force", False),
-        ("Intramolecular force", False)
-    ]),
-    ("Which of the following is responsible for the unusually high boiling points of HF, H₂O, and NH₃?", [
-        ("London dispersion forces", False),
-        ("Hydrogen bonding", True),
-        ("Covalent bonding", False),
-        ("Ionic bonding", False)
-    ]),
-    ("The hybridization of Xe in XeF₄ is sp³d². Which of the following is the shape of XeF₄?", [
-        ("Octahedral", False),
-        ("Square planar", True),
-        ("Tetrahedral", False),
-        ("Seesaw shape", False)
-    ]),
-    ("CCl₄ has four polar C–Cl bonds, yet CCl₄ is a non-polar molecule. Which of the following explains this?", [
-        ("Non-polar because of the four polar C–Cl bonds.", False),
-        ("Non-polar because of the electronegativity difference between C and Cl.", False),
-        ("Even though C–Cl is polar, net dipole moment is different from zero.", False),
-        ("Even though C–Cl is polar, net dipole moment of the molecule is zero.", True)
-    ]),
-    ("Which of the following is a Lewis acid?", [
-        ("SO₄²⁻", False),
-        ("SO₃²⁻", False),
-        ("BF₃", True),
-        ("NH₃", False)
-    ]),
-    ("Which is the CORRECT electron configuration of the peroxide ion, O₂²⁻?", [
-        ("…(π2py²=π2pz²)(π*2py)²(σ*2z)²", False),
-        ("…(π2py²=π2pz²)(π*2py²=π*2pz²)", True),
-        ("…(π2py²=π2pz²)(π*2x)²", False),
-        ("…(π2py=π2pz)", False)
-    ]),
-    ("A chemical bond that results from the attractive force between shared electrons and a nonmetal nucleus is called ________.", [
-        ("Covalent bond", True),
-        ("Ionic bond", False),
-        ("Hydrogen bond", False),
-        ("Metallic bond", False)
-    ]),
-    ("A water molecule has two bond pairs and two lone pairs. Which of the following is CORRECT about these pairs?", [
-        ("Repulsion: bonding pair–bonding pair > lone pair–lone pair", False),
-        ("Repulsion: lone pair–lone pair > bonding pair–bonding pair", True),
-        ("Bonding pair–lone pair repulsion > lone pair–lone pair repulsion", False),
-        ("Lone pair–lone pair repulsion = bonding pair–bonding pair repulsion", False)
-    ])
-]
 
 
+def seed(exam, questions):
+    for question_text, choices in questions:
+        q = Question.objects.create(exam=exam, text=question_text)
+        for choice_text, is_correct in choices:
+            Answer.objects.create(question=q, text=choice_text, is_correct=is_correct)
 
 
-chem_examb = Exam.objects.create(
-    title="Grade 12 Ethiopian University Entrance Chemistry Part 1",
-    description="Chemistry practice exam part 1",
-    duration_minutes=60,
+# =========================
+# Aptitude Entrance Exam
+# =========================
+
+aptitude_entrance = Exam.objects.create(
+    title="Grade 12 Ethiopian University Entrance Aptitude",
+    description="Aptitude entrance exam — verbal and quantitative reasoning",
+    duration_minutes=120,
 )
 
-for question_text, choices in chemistry_questions_deep_explanation:
-    q = Question.objects.create(exam=chem_examb, text=question_text)
-    for choice_text, is_correct in choices:
-        Answer.objects.create(question=q, text=choice_text, is_correct=is_correct)
+aptitude_entrance_questions = [
+    ("If two days after tomorrow is four days before Saturday, what day is it today?", [("Friday", False), ("Saturday", False), ("Sunday", False), ("Monday", True)]),
+    ("Gad is older than Dan and Dan is older than Betti. With Senni being older than Dan and younger than Gad, who is the youngest?", [("Betti", True), ("Senni", False), ("Gad", False), ("Dan", False)]),
+    ("Aki is Bali's sister. Yaya is Bali's mother. Lema is Yaya's father. Gette is Lema's mother. Then how is Aki related to Lema?", [("daughter", False), ("granddaughter", True), ("grandson", False), ("grandmother", False)]),
+    ("Statement I: All football players are sportspersons. Statement II: All sportspersons are fit. The conclusion 'Some football players are fit' is:", [("Conclusion: Some football players are fit.", False), ("incorrect", False), ("reasonably correct", True), ("appropriate", False)]),
+    ("How many months have a twenty-eighth day?", [("seven months", False), ("twelve months", True), ("one month", False), ("two months", False)]),
+    ("Which of the following can be rearranged into a 5-letter English word?", [("PYRIO", False), ("DWAEP", True), ("GOFAT", False), ("PASEH", False)]),
+    ("Passage I: What is the matter with our reading is casualness, languor, preoccupation. We don't give the book a chance. We don't put ourselves at the disposal of the book. It is impossible to read properly without using all one's engine power. If we are not tired after reading, common sense is not in us. How one should grapple with a superior and not be out of breath? But even if we read with the whole force of our brain, and do nothing else, common sense is still not in us, while sublime conceit is. For we are assuming that, without further trouble, we can possess, co-ordinate, and assimilate all the ideas and sensations rapidly offered to us by a mind greater than our own. The assumption has only to be stated in order to appear in its monstrous absurdity. Hence, it follows that something remains to be done; This something is the act of reflection. Reading without subsequent reflection is ridiculous; it is equally a proof of folly and vanity.\n\nWhat is described as an absurd assumption about reading according to the passage?", [("Reading does not require physical effort.", False), ("All books are equally valuable.", False), ("Ideas can be instantly absorbed and organized.", True), ("Superior minds are easy to understand.", False)]),
+    ("Which of the ideas is used as evidence for the absurd assumption about reading?", [("Line 3-4 [If we are not ... is not in us.]", False), ("Line 7-9 [For we ... greater than our own.]", True), ("Line 4 [tired after reading ... disposal of the book.]", False), ("Line 1 [What is the ... preoccupation.]", False)]),
+    ("Why does the author emphasize the act of reflection?", [("To complete the reading process.", True), ("To simplify the ideas encountered.", False), ("To improve intellectual superiority.", False), ("To make reading more enjoyable.", False)]),
+    ("Which of the ideas is used as evidence for the importance of reflection?", [("Line 10 [The assumption ... absurdity.]", False), ("Line 12 [Reading without ... ridiculous.]", True), ("Line 4 [tired after reading ... not in us.]", False), ("Line 1 [What is the ... preoccupation.]", False)]),
+    ("Identify the grammatically correct sentence:", [("One of all-time greatest payer have recently retired from football.", False), ("One of all-time greatest payers have recently retired from football.", False), ("One of all-time greatest payer has recently retired from football.", True), ("One of all-time greatest payers has recently retired from football.", False)]),
+    ("Identify the grammatically correct sentence:", [("If you'll not feel well, you'd better go to clinic.", False), ("If you're not feeling well, you'd better go to clinic.", True), ("If you'll not feel well, you better go to clinic.", False), ("If you're not feeling well, you would better go to clinic.", False)]),
+    ("Identify the grammatically correct sentence:", [("There school takes only twenty minutes on foot.", False), ("Theirs school takes only twenty minutes on foot.", False), ("Their school takes only twenty minutes on foot.", True), ("They're school takes only twenty minutes on foot.", False)]),
+    ("Identify the grammatically correct sentence:", [("I wanted to first take shower and then eat snack.", True), ("I wanted first take shower and then eat snack.", False), ("I wanted to first take shower and then ate snack.", False), ("I wanted to first take shower and then eating snack.", False)]),
+    ("Choose the word that does NOT fit the group: Monogamy, Polygamy, Polyglot, Polyandry", [("Monogamy", False), ("Polygamy", False), ("Polyglot", True), ("Polyandry", False)]),
+    ("Choose the word that does NOT fit the group: Election, Ballot-box, Signal-box, Voting", [("Election", False), ("Ballot-box", False), ("Signal-box", True), ("Voting", False)]),
+    ("Choose the word that does NOT fit the group: Tiptoeing, Flying, Strolling, Striding", [("Tiptoeing", False), ("Flying", True), ("Strolling", False), ("Striding", False)]),
+    ("Choose the word that does NOT fit the group: Yacht, Ship, Vehicle, Boat", [("Yacht", False), ("Ship", False), ("Vehicle", True), ("Boat", False)]),
+    ("AUTOMOBILE : GARAGE :: Hangar : ________", [("Deck", False), ("Truck", False), ("Train", False), ("Airplane", True)]),
+    ("KEY : LOCK :: Computer : ________", [("Server", False), ("Screen", False), ("Monitor", False), ("Password", True)]),
+    ("NEST : BIRD :: Lion : ________", [("Backyard", False), ("Den", True), ("Hive", False), ("Cave", False)]),
+    ("PHYSICIAN : HOSPITAL :: School : ________", [("Administrator", False), ("Student", False), ("Supervisor", False), ("Teacher", True)]),
+    ("Choose the closest synonym for: PHONEY", [("Fake", True), ("Funny", False), ("Genuine", False), ("Authentic", False)]),
+    ("Choose the closest synonym for: HUMOROUS", [("Satiating", False), ("Satisfying", False), ("Amusing", True), ("Doubting", False)]),
+    ("Choose the closest synonym for: THEFT", [("Burglary", True), ("Hypocrisy", False), ("Gossip", False), ("Suspicion", False)]),
+    ("Choose the word most nearly opposite in meaning to: FONDLY", [("Affectionate", False), ("Sociable", False), ("Hatred", True), ("Agreeable", False)]),
+    ("Choose the word most nearly opposite in meaning to: INVINCIBLE", [("Breakable", False), ("Debatable", False), ("Visible", False), ("Conquerable", True)]),
+    ("Choose the word most nearly opposite in meaning to: SUBORDINATE", [("Superior", True), ("Retainer", False), ("Soldier", False), ("Inferior", False)]),
+    ("Passage II: If you want transition from being an employee to an employer, the first step is to serve your current employer as you would wish to be served. Most successful employers today have risen through the ranks, relying on their ability to manage and direct others effectively by suppressing the vices of employers. They started with no more opportunities than you have now. There are people in your community who could benefit from your skills and vice versa. For example, Mr. John Smith wants to sell his grocery store and start a movie theater, while someone else with a movie theater might want to trade for a grocery store. If you can connect these two individuals, you will serve both and earn a commission in the process.\n\nIn Paragraph 2, the phrase 'these two individuals' refers to:", [("John Smith & the person in movie industry.", True), ("the grocery store and the movie theatre.", False), ("the employer and the employee.", False), ("people and the community as a whole.", False)]),
+    ("What does 'most successful employers today have risen through the ranks, relying on their ability to manage and direct others effectively' imply?", [("Every successful employer is the result of his/her hard work and diligence.", False), ("Having different ranks and rewards is the real manifestation of successful employers.", False), ("All successful employers today have reached their level passing through lots of ups and downs.", False), ("Most successful employers have proven their leadership ability through their journey.", True)]),
+    ("The main intent of the writer in the text is to imply that:", [("the transition from employee to employer does not require much effort except having the interest.", False), ("smooth transition from being an employer to employee is more of a matter of destiny than hard work.", False), ("most successful employers are those who have achieved their dreams through trade-off.", False), ("there are steps that one needs to undergo in the transition from employee to employer.", True)]),
+    ("According to the passage, what does the word 'vices' most likely denote?", [("deputies", False), ("strengths", False), ("weaknesses", True), ("ambitions", False)]),
+    ("Choose the word which can replace the bold term: The man was killed in a car accident. His body was dragged from the burning wreckage of his car.", [("remains", True), ("fire", False), ("backseats", False), ("wheels", False)]),
+    ("Choose the word which can replace the bold term: Harvard is one of the most prestigious universities in the USA.", [("privileged", False), ("admired", True), ("furnished", False), ("expensive", False)]),
+    ("Choose the word which can replace the bold term: The government has just repealed the law segregating public facilities so that there will be no longer discrimination.", [("approved", False), ("renewed", False), ("signed", False), ("cancelled", True)]),
+    ("How many triangles are there in the diagram?", [("18", True), ("14", False), ("16", False), ("12", False)]),
+    ("Which one of the following statements is true?", [("Every integer number can be numerator of a rational number.", True), ("Every non-negative integer is a natural number.", False), ("The intersection of the set of integers and the set of irrational numbers is non-empty set.", False), ("The sum of two irrational numbers is irrational number.", False)]),
+    ("If f(x) = sin(πx) + e^(x²) + |x| + x³ and g(x) = cos(πx) + ln(x + 1) + x, then what is the value of f(1) − 2g(0)?", [("e", True), ("ln 2", False), ("0", False), ("e + 2", False)]),
+    ("A student makes a glass of juice and used half of the glass with avocado, one third of the remaining half with mangoes and the rest is filled by banana and papaya with the same proportion. Which one of the following is the ratio of bananas to avocadoes in the glass?", [("1:6", False), ("1:2", False), ("1:3", True), ("2:3", False)]),
+    ("Which one of the following is the largest number?", [("6th root of 5", True), ("36th root of 2", False), ("12th root of 11", False), ("64th root of 3", False)]),
+    ("Two pipes A and B are used to fill a water tank. Pipe A can fill the tank in 3 hours, and pipe B can fill the same tank in 6 hours. How long will it take in hours to fill the tank if both pipes are opened at the same time?", [("5", False), ("4", False), ("9", False), ("2", True)]),
+    ("A milk factory has only two pipe machines used to fill bottles for market. The old and new machines can fill 35 and 50 bottles per hour, respectively, and a total of 590 bottles are filled every day. One day the old machine was broken after working for 4 hours. How long will it take in hours for the new machine to fill the remaining bottles on that day?", [("8", False), ("9", True), ("13", False), ("7", False)]),
+    ("If a spherical soccer ball has a volume of 36π cm³, then which one of the following is the surface area of the ball?", [("(16π)/3", False), ("12π", False), ("36π", True), ("(32π)/3", False)]),
+    ("A ball is shot into the air from the top of the building. The height in meters is given by h(t) = kt − t² + 30, where t is the time taken in seconds. What is the possible value of k if the maximum value of height from the ground is 34?", [("√2", False), ("4", True), ("5", False), ("2", False)]),
+    ("A farmer has ten cows. Every day, he receives the same amount of milk in liters from each cow. One day, due to the food supply, he received half of the daily amount of milk from four cows; he received three-fourth of the daily amount of milk from three cows, and no milk from the other three cows. In total, he didn't receive ninety-two liters of milk on that day. How many liters of milk did he receive on that particular day?", [("92", False), ("16", False), ("160", False), ("68", True)]),
+    ("Study Patterns recorded for 32 days: 2 hrs (10 days), 4 hrs (7 days), 6 hrs (7 days), 8 hrs (5 days), 10 hrs (3 days). How many days did the student study more than the average amount of study?", [("18", False), ("8", False), ("17", False), ("15", True)]),
+    ("Study Patterns recorded for 32 days: 2 hrs (10 days), 4 hrs (7 days), 6 hrs (7 days), 8 hrs (5 days), 10 hrs (3 days). How many days did the student study less than 8 hours?", [("5", False), ("2", False), ("24", True), ("12", False)]),
+    ("Study Patterns recorded for 32 days: 2 hrs (10 days), 4 hrs (7 days), 6 hrs (7 days), 8 hrs (5 days), 10 hrs (3 days). Which time in hours is the median amount of study?", [("6", False), ("8", False), ("24", False), ("4", True)]),
+    ("If −x + 2y = 4, then what is the value of (25^y) / (5^x)?", [("125", False), ("625", True), ("5", False), ("25", False)]),
+    ("A woman burns 416 calories in an hour exercise at a fitness center. If she burns 10 calories per minute swimming in the water and 6 calories per minute pedaling on the stationary bike, then how many minutes of the hour does she spend exercising in the water?", [("56", False), ("14", True), ("60", False), ("46", False)]),
+    ("Which one of the following is the domain of g(x) = ln(1 − x) + ln(x)?", [("(0, ∞)", False), ("R \\ {(−1, 0)}", False), ("(0, 1)", True), ("(1, ∞)", False)]),
+    ("How many days are there from the first day of March to the last day of May?", [("89", False), ("92", True), ("91", False), ("90", False)]),
+    ("A corporation pays ten employees a total of Birr 100,000 every month. Six out of ten employees receives less than Birr 10,000 per month. Compare: Quantity P (average monthly payment) vs Quantity Q (median monthly payment).", [("Quantity P is greater than Quantity Q.", True), ("Quantity P is less than Quantity Q.", False), ("The two quantities cannot be compared.", False), ("The two quantities are equal.", False)]),
+    ("Consider the lengths of the sides of a triangle x, y, z. Compare Quantity P: 3x + y − z vs Quantity Q: 4x.", [("Quantity P is less than Quantity Q.", True), ("Quantity P is greater than Quantity Q.", False), ("The two quantities cannot be compared.", False), ("The two quantities are equal.", False)]),
+    ("Which one of the following is true about the function f(x) = x^(2/5)?", [("The domain of f is {x ∈ R | x ≥ 0}", False), ("The range of f is {y ∈ R | y ≥ 0}", True), ("The range of f is {y | y ∈ R}", False), ("The domain of f is {x ∈ R | x ≤ 0}", False)]),
+    ("What is the value of z in the sequence 1, 2, 4, 8, 10, 20, 22, z, ...?", [("44", True), ("24", False), ("32", False), ("40", False)]),
+    ("An engineer places black ceramics along both diagonals of a 6×6 square floor (area 36 m², each tile 1 m²) and white ceramics on the rest. What is the ratio of black to white ceramics used?", [("1:6", False), ("1:2", False), ("1:5", True), ("4:5", False)]),
+    ("A daily profit earned by a T-shirt factory is modeled by p(x) = −x² + 1400x − 80,000. What range of prices will yield a profit of at least Birr 400,000?", [("600 ≤ x ≤ 800", True), ("x ≤ 800", False), ("x ≤ 600 or x ≥ 800", False), ("x ≤ 600", False)]),
+]
+
+seed(aptitude_entrance, aptitude_entrance_questions)
+
+
+
+
+# =========================
+# Physics Exam
+# =========================
+
+physics_exam = Exam.objects.create(
+    title="Grade 12 Ethiopian University Entrance Physics Part A",
+    description="Physics practice exam — vectors, kinematics, dynamics, energy",
+    duration_minutes=180,
+)
+
+physics_questions = [
+    ("Vector quantities are represented by", [("magnitude and direction", True), ("direction only", False), ("magnitude only", False), ("dimensionless values", False)]),
+    ("Two displacement vectors have magnitudes 4 m and 3 m. Which one of the following is NOT a possible value of the magnitude of their resultant?", [("1 m", False), ("7 m", False), ("5 m", False), ("12 m", True)]),
+    ("Which of the following correctly describes the difference between distance and displacement?", [("Distance can be described by magnitude and direction, while displacement is described by magnitude only", False), ("Distance depends on the initial and final points, while displacement depends on the path", False), ("Distance is always ≥ the magnitude of displacement, while displacement is always ≤ distance", True), ("Distance has positive or negative values, while displacement has only positive value", False)]),
+    ("Given the displacement vector Ā = (3î − 4ĵ) m, what is the unit vector in the direction of Ā?", [("0.6î + 0.8ĵ", False), ("0.8î − 0.6ĵ", False), ("0.6î − 0.8ĵ", True), ("−0.6î + 0.8ĵ", False)]),
+    ("If two vectors ā and b̄ form an angle α between them, the expression ab cosα defines the value of", [("scalar product of ā and b̄", True), ("resultant of ā and b̄", False), ("projection of ā on b̄", False), ("vector product of ā and b̄", False)]),
+    ("You are given F₁ = 75 N (53° W of N) and F₂ = 100 N (37° E of N). Using graphical scale 1 cm = 10 N, what is the length and direction of the resultant?", [("1.73 cm to 45° North of East", False), ("1.25 cm to the North", False), ("17.3 cm to 45° North of East", False), ("12.5 cm to the North", True)]),
+    ("Which pair of vectors is collinear?", [("C = î + ĵ and D = î − ĵ", False), ("A = 2î + 3ĵ and B = −4î + 6ĵ", False), ("E = −î + ĵ and F = 3î − 3ĵ", True), ("G = 2î + 3ĵ and F = 3î + 2ĵ", False)]),
+    ("A person walked 10 m at 53° N of E, 10 m North, and 20 m at 37° N of W. The magnitude of the person's displacement is", [("30.0 m", False), ("31.6 m", True), ("40.0 m", False), ("20.0 m", False)]),
+    ("According to Newton's first law, an object in motion continues its state of motion with", [("a decreasing speed if the resultant force on it is zero", False), ("constant velocity if the resultant force on it is not zero", False), ("an increasing speed if the resultant force on it is not zero", False), ("constant velocity if the resultant force on it is zero", True)]),
+    ("Which of the following correctly describes uniformly accelerated motion?", [("The velocity is constant", False), ("The acceleration is constant", True), ("The speed is constant but the direction is changing", False), ("The displacement increases at a uniform rate", False)]),
+    ("A train moving with constant acceleration of 5 m/s² passes a traffic light with velocity such that it reaches 30 m/s in 4 seconds. What is the distance from the traffic light after 8 seconds?", [("80 m", False), ("160 m", False), ("240 m", True), ("320 m", False)]),
+    ("An object moving with constant acceleration a travels displacement s in time t, with initial velocity vᵢ and final velocity vf. Which relation is correct?", [("s = ((vf − vᵢ)/2) × t", False), ("s = vᵢt + ½at", False), ("s = (vf² − vᵢ²)/a", False), ("s = vft − ½at²", True)]),
+    ("A ball is thrown vertically upward, reaches a maximum height, then returns. Which statement about energy and work is correct?", [("On the way up, work done by gravity is positive", False), ("On the way up, change in kinetic energy is positive", False), ("On the way down, work done by gravity is positive", True), ("On the way down, change in potential energy is positive", False)]),
+    ("The velocity-time graph shows motion in a straight line. What is the magnitude of total displacement in 14 seconds? (Graph: −3 m/s for 0–2s, increasing to 12 m/s at 8s, constant to 10s, decreasing to 0 at 14s)", [("102 m", False), ("90 m", False), ("54 m", False), ("42 m", True)]),
+    ("A ball thrown vertically upward with 12 m/s. Its speed when 4.0 m above the ground is", [("8 m/s", True), ("15 m/s", False), ("10 m/s", False), ("12 m/s", False)]),
+    ("Suppose a ball is thrown horizontally from a building of height h with initial speed v₀. Which statement is correct about the motion?", [("Its vertical component velocity remains constant", False), ("Its horizontal component acceleration is zero", True), ("Its horizontal component velocity uniformly increases", False), ("Its vertical component acceleration is zero", False)]),
+    ("A projectile is thrown from level ground with initial velocity v₀ at angle θ. If maximum height is H, what is the horizontal range in terms of H and θ?", [("R = H tanθ / 4", False), ("R = H / tanθ", False), ("R = H / (4 tanθ)", False), ("R = 4H / tanθ", True)]),
+    ("An object is projected at angle θ from horizontal with velocity v₀. Which expression gives the relationship between maximum height h_max and range R?", [("R = h_max × tanθ/2", False), ("R = 4 h_max tanθ", False), ("R = 2h_max/tanθ", False), ("R = 4h_max/tanθ", True)]),
+    ("A 0.5 kg block moving at 5.0 m/s slides 2.5 m on a rough surface before stopping. The coefficient of kinetic friction is", [("0.5", True), ("0.3", False), ("0.1", False), ("0.4", False)]),
+    ("A 2 kg object accelerates at 1.5 m/s² to the right on a frictionless surface under two forces F₁ and F₂, where F₂ = 1 N acts to the left. What is the magnitude of F₁?", [("2 N", False), ("1 N", False), ("3 N", False), ("4 N", True)]),
+    ("A particle of mass m is tied to a string and whirled in a horizontal circle. The string makes angle θ with vertical. Which force provides the centripetal force?", [("T sinθ", True), ("T cosθ", False), ("mg sinθ", False), ("mg cosθ", False)]),
+    ("Block A (m₁ = 8 kg, u₁ = 6 m/s) collides with Block B (m₂ = 12 kg, u₂ = 3 m/s), both moving in +x. After collision, v₁ = 4 m/s (+x). What is v₂?", [("4.33 m/s to −x", False), ("3.71 m/s to −x", False), ("3.71 m/s to +x", False), ("4.33 m/s to +x", True)]),
+    ("A tennis ball (0.10 kg) traveling at 40.0 m/s is struck by a racket and returns at 30.0 m/s in the opposite direction. The magnitude of impulse delivered to the ball is", [("3.0 kg·m/s", False), ("4.0 kg·m/s", False), ("7.0 kg·m/s", True), ("1.0 kg·m/s", False)]),
+    ("A spring stores 120 J of elastic potential energy when stretched by 0.5 m. What is the potential energy stored when stretched by 1.5 m?", [("480 J", False), ("960 J", False), ("1080 J", True), ("540 J", False)]),
+    ("Consider two balls A and B projected with the same velocity v₀ at angles θ₁ and θ₂ where 0 < θ₁ < 45° and 45° < θ₂ < 90°. Which statement is correct?", [("Range of ball A is less than its maximum height", False), ("Ball A takes longer than B to reach maximum height", False), ("Both balls have equal speed at their maximum heights", False), ("The two balls cover equal ranges when θ₁ + θ₂ = 90°", True)]),
+    ("A car travels 60 m north and then 80 m west. The magnitude of the resultant displacement is", [("4800 m", False), ("20 m", False), ("140 m", False), ("100 m", True)]),
+    ("A car initially traveling at 20 m/s decelerates at 1.5 m/s². The radius of each tire is 0.3 m. How many revolutions does each tire make before the car stops?", [("444.4 rev", False), ("70.77 rev", True), ("44.44 rev", False), ("133.33 rev", False)]),
+    ("A wheel of radius r = 50 cm rotates with angular speed ω = 200 rad/s. What is the tangential speed of a point on the rim?", [("800 m/s", False), ("10,000 m/s", False), ("100 m/s", True), ("80,000 m/s", False)]),
+    ("Which of the following statements is correct about static and dynamic equilibrium?", [("Static: object at rest; Dynamic: object moves with constant velocity", True), ("Static: object moves with constant acceleration; Dynamic: object is at rest", False), ("Static: acceleration = 0; Dynamic: acceleration increases uniformly", False), ("Static: object moves with constant velocity; Dynamic: object is at rest", False)]),
+    ("Which one of the following is a necessary condition for an object to be in linear equilibrium?", [("The net force acting on the object is a non-zero constant", False), ("The linear acceleration of the object is zero", True), ("The linear speed of the object is constant", False), ("The linear acceleration of the object is a non-zero constant", False)]),
+]
+
+seed(physics_exam, physics_questions)

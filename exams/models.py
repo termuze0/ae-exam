@@ -12,6 +12,7 @@ class Exam(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     duration_minutes = models.PositiveIntegerField(default=60)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
