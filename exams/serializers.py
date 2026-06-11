@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Exam, Answer, Question, Passage
+from .models import Exam, Answer, Question, Passage, CustomUser
+from djoser.serializers import UserCreateSerializer
 
 
 # ── Passage ───────────────────────────────────────────────────────────────────
@@ -84,3 +85,11 @@ class ExamBulkUploadSerializer(serializers.ModelSerializer):
                 Answer.objects.create(question=question, **a_data)
 
         return exam
+
+
+# ── User (Djoser) ────────────────────────────────────────────────────────────
+
+class CustomUserCreateSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
+        model = CustomUser
+        fields = ('id', 'username', 'password')
