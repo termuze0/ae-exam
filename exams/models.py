@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from .validators import validate_aes_username
-
+from cloudinary.models import CloudinaryField
 class CustomUser(AbstractUser):
     username = models.CharField(
         max_length=20,
@@ -18,6 +18,15 @@ class Exam(models.Model):
         return self.title
 
 
+
+class Passage(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    content = models.TextField()
+    image = CloudinaryField(
+        "passage/",
+        blank=True,
+        null=True
+    )
 class Question(models.Model):
     exam = models.ForeignKey(
         Exam,
@@ -25,11 +34,15 @@ class Question(models.Model):
         related_name='questions'
     )
 
+    passage = models.ForeignKey(
+        Passage,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='questions'
+    )
+
     text = models.TextField()
-
-    def __str__(self):
-        return self.text
-
 
 class Answer(models.Model):
     question = models.ForeignKey(
