@@ -9,6 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()
 import cloudinary
 import os
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,7 +18,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-sj%=@61_unby-61+alpb3=#4xh3j3m))6v9(n&a_7$$e)nsh=$'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
@@ -32,6 +33,7 @@ INSTALLED_APPS = [
     'corsheaders',  # Moved up for better organization
     'rest_framework',
     'exams',
+    'accounts',
     'rest_framework.authtoken',
     'djoser',
 ]
@@ -113,12 +115,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ae_exam.wsgi.application'
 
-# Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.parse(
+        os.environ.get("DATABASE_URL")
+    )
 }
 
 # Password validation
@@ -144,14 +144,34 @@ REST_FRAMEWORK = {
     ),
 }
 
-AUTH_USER_MODEL = 'exams.CustomUser'
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 DJOSER = {
     'LOGIN_FIELD': 'username',
-    'USER_ID_FIELD': 'username',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': False,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': False,
     'SERIALIZERS': {
-        'user_create': 'exams.serializers.CustomUserCreateSerializer',
-    },}
+        'user_create': 'accounts.serializers.CustomUserCreateSerializer',
+        'user': 'accounts.serializers.CustomUserSerializer',
+        'current_user': 'accounts.serializers.CustomUserSerializer',
+    },
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': __import__('datetime').timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': __import__('datetime').timedelta(days=7),
+}
+
+# Email config for password reset
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your-app-password'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'

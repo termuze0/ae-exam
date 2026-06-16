@@ -1,15 +1,18 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from rest_framework.parsers import MultiPartParser, FormParser  # ← add this
+from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from django.db import transaction
+from django.contrib.auth.hashers import check_password
 
 from .models import Exam, Passage, Question, Answer
 from .serializers import (
     ExamSerializer,
     ExamDetailSerializer,
+    ExamStudentSerializer,
     ExamBulkUploadSerializer,
+    ExamPasswordCheckSerializer,
     PassageSerializer,
     QuestionSerializer,
     AnswerSerializer,
@@ -20,7 +23,7 @@ from .serializers import (
 
 class ExamListAPIView(APIView):
     def get(self, request):
-        exams = Exam.objects.all().order_by('-id')
+        exams = Exam.objects.all().order_by("-id")
         return Response(ExamSerializer(exams, many=True).data)
 
     def post(self, request):
@@ -35,16 +38,17 @@ class ExamDetailAPIView(APIView):
         return get_object_or_404(Exam, pk=pk)
 
     def get(self, request, pk):
+        # Admin/staff view — full detail with correct answers
         return Response(ExamDetailSerializer(self.get_object(pk)).data)
 
     def put(self, request, pk):
-        serializer = ExamDetailSerializer(self.get_object(pk), data=request.data)
+        serializer = ExamSerializer(self.get_object(pk), data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
 
     def patch(self, request, pk):
-        serializer = ExamDetailSerializer(self.get_object(pk), data=request.data, partial=True)
+        serializer = ExamSerializer(self.get_object(pk), data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
@@ -63,13 +67,40 @@ class ExamBulkUploadAPIView(APIView):
         return Response(ExamDetailSerializer(exam).data, status=status.HTTP_201_CREATED)
 
 
+class ExamStartAPIView(APIView):
+    """
+    Student submits the exam password here.
+
+    - If the exam has no password, return the student-safe exam data directly.
+    - If it has a password and the submitted one matches, return student-safe data.
+    - If the password is wrong, return 403.
+    - Correct answers (is_correct) are NEVER included in the response.
+    """
+    def post(self, request, pk):
+        exam = get_object_or_404(Exam, pk=pk)
+        serializer = ExamPasswordCheckSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        submitted_password = serializer.validated_data["password"]
+
+        if exam.password:
+            if not check_password(submitted_password, exam.password):
+                return Response(
+                    {"detail": "Incorrect exam password."},
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+
+        # Return student-safe serializer (no is_correct leak)
+        return Response(ExamStudentSerializer(exam).data, status=status.HTTP_200_OK)
+
+
 # ── Passage ───────────────────────────────────────────────────────────────────
 
 class PassageListAPIView(APIView):
-    parser_classes = [MultiPartParser, FormParser]  # ← add this
+    parser_classes = [MultiPartParser, FormParser]
 
     def get(self, request):
-        passages = Passage.objects.all().order_by('-id')
+        passages = Passage.objects.all().order_by("-id")
         return Response(PassageSerializer(passages, many=True).data)
 
     def post(self, request):
@@ -80,7 +111,7 @@ class PassageListAPIView(APIView):
 
 
 class PassageDetailAPIView(APIView):
-    parser_classes = [MultiPartParser, FormParser]  # ← add this
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_object(self, pk):
         return get_object_or_404(Passage, pk=pk)
@@ -109,7 +140,10 @@ class PassageDetailAPIView(APIView):
 
 class QuestionListAPIView(APIView):
     def get(self, request):
-        qs = Question.objects.select_related('passage').prefetch_related('answers').order_by('-id')
+        exam_id = request.query_params.get("exam")
+        qs = Question.objects.select_related("passage").prefetch_related("answers").order_by("-id")
+        if exam_id:
+            qs = qs.filter(exam_id=exam_id)
         return Response(QuestionSerializer(qs, many=True).data)
 
     def post(self, request):
@@ -121,7 +155,9 @@ class QuestionListAPIView(APIView):
 
 class QuestionDetailAPIView(APIView):
     def get_object(self, pk):
-        return get_object_or_404(Question.objects.prefetch_related('answers'), pk=pk)
+        return get_object_or_404(
+            Question.objects.select_related("passage").prefetch_related("answers"), pk=pk
+        )
 
     def get(self, request, pk):
         return Response(QuestionSerializer(self.get_object(pk)).data)
@@ -147,7 +183,11 @@ class QuestionDetailAPIView(APIView):
 
 class AnswerListAPIView(APIView):
     def get(self, request):
-        return Response(AnswerSerializer(Answer.objects.all().order_by('-id'), many=True).data)
+        question_id = request.query_params.get("question")
+        qs = Answer.objects.all().order_by("-id")
+        if question_id:
+            qs = qs.filter(question_id=question_id)
+        return Response(AnswerSerializer(qs, many=True).data)
 
     def post(self, request):
         serializer = AnswerSerializer(data=request.data)

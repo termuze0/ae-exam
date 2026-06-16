@@ -1,9 +1,7 @@
 from django.contrib import admin
 from .models import Exam, Question, Answer
 
-from .models import CustomUser
-
-admin.site.register(CustomUser)
+# CustomUser is registered in the `accounts` app admin
 
 class AnswerInline(admin.TabularInline):
     model = Answer
