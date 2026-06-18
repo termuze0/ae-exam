@@ -9,6 +9,9 @@ from .views import (
     QuestionDetailAPIView,
     AnswerListAPIView,
     AnswerDetailAPIView,
+    ExamSubmitAPIView,
+    ExamResultAPIView,
+    ExamStartAPIView
 )
 urlpatterns = [
     # Exam
@@ -27,6 +30,12 @@ urlpatterns = [
     # Answer
     path('answers/',            AnswerListAPIView.as_view()),
     path('answers/<int:pk>/',   AnswerDetailAPIView.as_view()),
+
+    path("exams/<int:pk>/start/", ExamStartAPIView.as_view()),
+
+    path("exams/<int:pk>/submit/", ExamSubmitAPIView.as_view()),
+    path("exams/<int:pk>/result/", ExamResultAPIView.as_view()),
+    
 ]
 
 

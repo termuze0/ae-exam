@@ -23,6 +23,7 @@ urlpatterns = [
         "api/",
         include("exams.urls")
     ),
+    
     path('api/auth/', include('djoser.urls')),
     path('api/auth/', include('djoser.urls.jwt')),
 

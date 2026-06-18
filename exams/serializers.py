@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import Exam, Answer, Question, Passage
+from .models import Exam, Answer, Question, Passage,StudentAnswer,ExamResult
 
 
 # ── Passage ───────────────────────────────────────────────────────────────────
@@ -167,3 +167,50 @@ class ExamBulkUploadSerializer(serializers.ModelSerializer):
                 Answer.objects.create(question=question, **a_data)
 
         return exam
+class StudentAnswerInputSerializer(serializers.Serializer):
+    """One entry in the submission payload."""
+    question_id = serializers.IntegerField()
+    answer_id   = serializers.IntegerField(allow_null=True)
+
+
+class ExamSubmitSerializer(serializers.Serializer):
+    """Full submission payload."""
+    answers = StudentAnswerInputSerializer(many=True)
+
+
+class StudentAnswerResultSerializer(serializers.ModelSerializer):
+    """Per-question breakdown in the result response."""
+    question_id     = serializers.IntegerField(source="question.id")
+    question_text   = serializers.CharField(source="question.text")
+    selected_answer_id = serializers.IntegerField(
+        source="selected_answer.id", allow_null=True
+    )
+    correct_answer_id = serializers.SerializerMethodField()
+    is_correct        = serializers.BooleanField()
+
+    class Meta:
+        model  = StudentAnswer
+        fields = [
+            "question_id", "question_text",
+            "selected_answer_id", "correct_answer_id", "is_correct",
+        ]
+
+    def get_correct_answer_id(self, obj):
+        correct = obj.question.answers.filter(is_correct=True).first()
+        return correct.id if correct else None
+
+
+class ExamResultSerializer(serializers.ModelSerializer):
+    student_answers = StudentAnswerResultSerializer(
+        source="session.student_answers", many=True
+    )
+    exam_id    = serializers.IntegerField(source="session.exam.id")
+    exam_title = serializers.CharField(source="session.exam.title")
+
+    class Meta:
+        model  = ExamResult
+        fields = [
+            "id", "exam_id", "exam_title",
+            "score", "total", "passed", "finished_at",
+            "student_answers",
+        ]

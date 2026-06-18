@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'corsheaders',  # Moved up for better organization
     'rest_framework',
     'exams',
+    
     'accounts',
     'rest_framework.authtoken',
     'djoser',
